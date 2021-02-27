@@ -1,0 +1,33 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+{% include 'accounts/status.html' %}
+<br>
+<div class="row">
+	<div class="col-md-7">
+		<h5>MEMBERS:</h5>
+		<hr>
+		<div class="card card-body">
+			<table class="table table-md">
+				<thead class="thead-dark">
+					<tr>
+						<th>Members</th>
+						<th></th>
+						<th>Trainer</th>
+						<th></th>
+						<th>Join Date</th>
+					</tr>
+				</thead>
+				{% for i in members %}
+				<tr>
+					<td>{{i.first_name}}<td>
+					<td>{{i.trainer}}<td>
+					<td>{{i.join_date}}<td>
+				<tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+</div>
+{% endblock content%}

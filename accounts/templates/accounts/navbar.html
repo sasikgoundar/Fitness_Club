@@ -1,0 +1,45 @@
+<!--<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" href="#">Fitness Club</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse " id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">My Settings</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+-->
+<nav class="nav fixed-top navbar-expand ">
+    <div class="container">
+        <div class="logo">
+            <a href="#">Logo</a>
+        </div>
+        <div id="mainListDiv" class="main_list">
+            <ul class="navlinks">
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'login' %}">Sign In</a></li>
+                <li><a href="#">My Settings</a></li>
+                <li><a href="{% url 'Aboutus' %}">About</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><span>Hello, {{request.user}}</span></li>
+            </ul>
+        </div>
+        <span class="navTrigger">
+            <i></i>
+            <i></i>
+            <i></i>
+        </span>
+    </div>
+</nav>
