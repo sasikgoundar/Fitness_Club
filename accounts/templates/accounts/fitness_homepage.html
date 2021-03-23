@@ -16,14 +16,24 @@
 <nav class="nav">
     <div class="container">
         <div class="logo">
-            <a href="#">Logo</a>
+            <a href="{% url 'Homepage' %}">Logo</a>
         </div>
         <div id="mainListDiv" class="main_list">
-            <ul class="navlinks">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Register</a></li>
-                <li><a href="#">Sign In</a></li>
-                <li><a href="#">My Settings</a></li>
+            <ul class="navlinks ml-auto">
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'login' %}">Sign In</a></li>
+                {% endif %}
+                <li><a href="{% url 'Aboutus' %}"> AboutUs</a></li>
+
+
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'MyProfile' %}">My Settings</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+              <li><a href="#">Hello, {{request.user}}</a></li>
+                {% endif %}
             </ul>
         </div>
         <span class="navTrigger">
@@ -34,24 +44,113 @@
     </div>
 </nav>
 
+<div id="home">
+  <section id="hero-banner">
+      <div class="banner-inner">
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm-12">
 
+                      <h2>Stronger than <b>EVER</b></h2>
+                      <p class="text-white" style="text-align: center;">Whenever my body shouts STOP, my mind screams NEVER!<br>Winners TRAIN!, Losers COMPLAIN!</p>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  
+<style>
+  #hero-banner{
+overflow: hidden;
+height: 800px;
+background: url('https://images.unsplash.com/photo-1554344728-77cf90d9ed26?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDZ8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+background-size:cover;
+color:#fff;
+}
+#hero-banner.item {
+height: 558px;
+background-repeat: no-repeat;
+background-position: 50% 0;
+background-size: cover;
+}
+#hero-banner.banner-inner {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+color: #000;
+}
+#hero-banner h2 {
+margin-top: 299px;
+font-size: 39px;
+line-height: 49px; 
+text-align: center;
+}
+#hero-banner h2 b{
+color:#F9690E;
+}
+#hero-banner p { 
+font-size: 22px; 
+margin-bottom:20px;
+line-height:35px; 
+text-align: right;
+}
+#hero-banner a{
+width: 150px;
+margin: 0;
+display: block;
+background: transparent;
+border: 2px solid #fff;
+display: inline-block;
+text-align: center;
+}
+#hero-banner a:hover{
+text-align: center;
+width: 150px;
+margin: 0 auto;
+display: block;
+background: #F9690E;
+border: 2px solid #F9690E;
+color: #FFF;
+}
+#hero-banner.banner-inner h2 > span {
+color: #45aed6;
+}
+#hero-banner.banner-inner .btn {
+margin-top: 10px;
+} 
+
+#hero-text {
+padding: 50px 0;
+border-top: 1px solid #FFFFFF;
+}
+#hero-text h2 {
+margin-top: 0;
+}
+#hero-text .btn {
+margin-top: 40px;
+}
+</style>
+<!----
 <section class="home">   
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="image-lb" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(2).jpg" alt="First slide">
+            <img class="image-lb" src="https://image.freepik.com/free-photo/beautiful-young-sporty-sexy-couple-showing-muscle-workout-gym-during-photoshooting_96727-529.jpg" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img class="image-lb" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(4).jpg" alt="Second slide">
+            <img class="image-lb" src="https://images.unsplash.com/photo-1610456756490-0f7069c202d7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Z3ltJTIwZXF1aXBtZW50fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Second slide">
           </div>
           <div class="carousel-item">
-            <img class="image-lb" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(6).jpg" alt="Third slide">
+            <img class="image-lb" src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mjd8fHVuaXNleCUyMGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Third slide">
           </div>
           <div class="carousel-item">
-            <img class="image-lb" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(44).jpg" alt="Third slide">
+            <img class="image-lb" src="https://images.unsplash.com/photo-1597076537061-a6b58163aa45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTZ8fGd5bSUyMGVxdWlwbWVudHN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Third slide">
           </div>
           <div class="carousel-item">
-            <img class="image-lb" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(46).jpg" alt="Third slide">
+            <img class="image-lb" src="https://images.unsplash.com/photo-1535743686920-55e4145369b9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8NzB8fGNyb3NzZml0fGVufDB8fDB8&auto=format&fit=crop&w=500&q=60" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -64,11 +163,12 @@
         </a>
       </div>
 </section>
+<br><br><br><br><br>
 <style>
     .image-lb{
         width: 100%;
         display: block;
-        height: 740px;
+        height: 760px;
     }
     .caruosel-control-prev,.caruosel-control-next{
         opacity: .5;
@@ -80,9 +180,12 @@
     }
     </style>
 
-<br><br>
-<h3 style="text-align: center;">OUR EXPANSION</h3>
+  -->
+<br><br><br>
 <section id="counts" class="counts">
+  <div class="section-title">
+    <h3>Our <span style="color: #0d58ba;">Records</span></h3>
+  </div><br>
     <div class="container aos-init aos-animate" data-aos="fade-up">
 
       <div class="row">
@@ -90,7 +193,7 @@
         <div class="col-lg-3 col-md-6 mt-5">
             <div class="count-box">
               <i class="fa fa-users"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="0" class="purecounter">521</span>
+              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="0" class="purecounter">{{total_members}}</span>
               <p>Happy Users</p>
             </div>
           </div>
@@ -98,7 +201,7 @@
         <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
           <div class="count-box">
             <i class="fa fa-heart"></i>
-            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="0" class="purecounter">521</span>
+            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="0" class="purecounter">{{total_trainers}}</span>
             <p>Trainers</p>
           </div>
         </div>
@@ -128,10 +231,16 @@
 .counts{
     padding: 65px 0 60px;
   }
-   [data-aos^=fade][data-aos^=fade].aos-animate {
-    opacity: 1;
-    transform: translateZ(0);
-}
+   
+.section-title {
+    text-align: center;
+    padding-bottom: 30px;
+          }
+.section-title h3{
+            margin: 0 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+          }
 .row {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
@@ -191,55 +300,47 @@
 }
   </style>
 
-<h3 style="text-align: center;">OUR ACHIEVEMENTS</h3>
+<br><br>
   <section id="services" class="services">
-<div class="col-lg-6 col-md-6 d-flex mx-auto align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+<div class="col-lg-4 col-md-6 d-flex mx-auto align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+  
     <div class="icon-box">
-      <div class="icon"><i class="bx bxl-dribbble"></i></div>
-      <h4>Achievements</h4>
-      <p><i class="fa fa-star">  Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</i></p><br>
-      <p><i class="fa fa-star">  Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</i></p><br>
-      <p><i class="fa fa-star">  Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</i></p><br>
-      <p><i class="fa fa-star">  Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</i></p><br>
+      <h4><i class="fa fa-trophy"></i>        Perks and Benefits       <i class="fa fa-trophy"></i></h4><br>
+      <p>  BodyWorks T-shirt and bag </p><br>
+      <p>  Unlimited protein shakes/bars </p><br>
+      <p>  Occasional gift coupons/vouchers </p><br>
+      <p>  Free introductory trial session </p><br>
     </div>
   </div>
 </section>
 <style>
+  .section-title {
+    text-align: center;
+    padding-bottom: 30px;
+          }
+.section-title h3{
+            margin: 0 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+          }
 .services .icon-box {
     text-align: center;
-    border: 1px solid #e2eefd;
-    padding: 80px 20px;
+    border: 0.5px solid #141618;
+    padding: 60px 20px;
     transition: all ease-in-out 0.3s;
     background: #fff;
 }
 .services .icon-box .icon {
     margin: 0 auto;
-    width: 64px;
-    height: 64px;
     background: #f1f6fe;
-    border-radius: 4px;
-    border: 1px solid #deebfd;
     display: flex;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 20px;
     transition: ease-in-out 0.3s;
 }
 .services .icon-box .icon i {
-    color: #3b8af2;
-    font-size: 28px;
+    
+  
     transition: ease-in-out 0.3s;
-}
-.bx {
-    font-family: 'boxicons'!important;
-    font-weight: normal;
-    font-style: normal;
-    font-variant: normal;
-    line-height: 1;
-    display: inline-block;
-    text-transform: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 .services .icon-box h4 {
     font-weight: 700;
@@ -253,6 +354,7 @@
     font-size: 18px;
     margin-bottom: 0;
     margin-top: 0px;
+    font-family: 'Montserrat', sans-serif;
 }
 .services
 {
@@ -264,666 +366,339 @@
 }
 </style>
 
-<section id="testimonials" class="testimonials">
+<br><br><br><br><br><br><br>
+<section id="cta" class="cta">
     <div class="container aos-init aos-animate" data-aos="zoom-in">
-
-      <div class="testimonials-slider swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-        <div class="swiper-wrapper" id="swiper-wrapper-10e6e34946161d66f" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-6960px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="0" role="group" aria-label="1 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-              <h3>Saul Goodman</h3>
-              <h4>Ceo &amp; Founder</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="1" role="group" aria-label="2 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Sara Wilsson</h3>
-              <h4>Designer</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="2" role="group" aria-label="3 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-              <h3>Jena Karlis</h3>
-              <h4>Store Owner</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" role="group" aria-label="4 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-              <h3>Matt Brandon</h3>
-              <h4>Freelancer</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev" data-swiper-slide-index="4" role="group" aria-label="5 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-              <h3>John Larson</h3>
-              <h4>Entrepreneur</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div>
-
-          <div class="swiper-slide swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="6 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-              <h3>Saul Goodman</h3>
-              <h4>Ceo &amp; Founder</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide swiper-slide-duplicate-next" data-swiper-slide-index="1" role="group" aria-label="7 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Sara Wilsson</h3>
-              <h4>Designer</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide" data-swiper-slide-index="2" role="group" aria-label="8 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-              <h3>Jena Karlis</h3>
-              <h4>Store Owner</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide" data-swiper-slide-index="3" role="group" aria-label="9 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-              <h3>Matt Brandon</h3>
-              <h4>Freelancer</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="4" role="group" aria-label="10 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-              <h3>John Larson</h3>
-              <h4>Entrepreneur</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><!-- End testimonial item -->
-
-        <div class="swiper-slide swiper-slide-duplicate swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="11 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-              <h3>Saul Goodman</h3>
-              <h4>Ceo &amp; Founder</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><div class="swiper-slide swiper-slide-duplicate swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="12 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Sara Wilsson</h3>
-              <h4>Designer</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="2" role="group" aria-label="13 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-              <h3>Jena Karlis</h3>
-              <h4>Store Owner</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" role="group" aria-label="14 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-              <h3>Matt Brandon</h3>
-              <h4>Freelancer</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div><div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev" data-swiper-slide-index="4" role="group" aria-label="15 / 15">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-              <h3>John Larson</h3>
-              <h4>Entrepreneur</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-          </div></div>
-        <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 5"></span></div>
-      <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-
+      <div class="text-center">
+        <h3><i class="fa fa-star"></i>     Free Trial     <i class="fa fa-star"></i></h3>
+        <p> Experience the world-class fitness regime for a day absolutely free. We are sure you would love it.</p>
+        <a class="cta-btn" href="#">Book A Free Trial</a>
+      </div>
     </div>
   </section>
-
+<br>
   <style>
-      .testimonials {
-    padding: 80px 0;
-    background: url(../img/testimonials-bg.jpg) no-repeat;
-    background-position: center center;
+      .cta {
+    background: #000000;
     background-size: cover;
-    position: relative;
+    padding: 60px 0;
 }
-[data-aos^=zoom][data-aos^=zoom].aos-animate {
-    opacity: 1;
-    transform: translateZ(0) scale(1);
+.text-center {
+    text-align: center!important;
 }
-[data-aos][data-aos][data-aos-easing=ease-in-out], body[data-aos-easing=ease-in-out] [data-aos] {
-transition-timing-function: ease-in-out;
-}
-.swiper-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
-    transition-property: transform;
-    box-sizing: content-box;
-}
-.swiper-slide {
-    flex-shrink: 0;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition-property: transform;
-}
-.testimonials .testimonial-item {
-    text-align: center;
+.cta h3 {
     color: #fff;
-}
-.testimonials .testimonial-item .testimonial-img {
-    width: 100px;
-    border-radius: 50%;
-    border: 6px solid rgba(255, 255, 255, 0.15);
-    margin: 0 auto;
-}
-img{
-    vertical-align: middle;
-}
-.testimonials .testimonial-item h3 {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 10px 0 5px 0;
-    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
     line-height: 1.2;
+    font-family: 'Montserrat',sans-serif
 }
-.testimonials .testimonial-item h4 {
+.cta p{
+    color: white;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat',sans-serif;
+    font-size: 18px;
+}
+.cta .cta-btn {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
     font-size: 14px;
-    color: #ddd;
-    margin: 0 0 15px 0;
-    font-weight: 500;
-    line-height: 1.2;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 10px 35px;
+    border-radius: 5px;
+    transition: 0.5s;
+    margin-top: 10px;
+    border: 2px solid #fff;
+    color: #fff;
+    text-decoration: none;
 }
   </style>
 
-<!----
-<style>
-#sum_box h4 {
-    text-align: left;
-    margin-top: 0px;
-    font-size: 30px;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-}
-
-
-#sum_box .db:hover {
-    background: #40516f;
-    color: #fff;
-}
-
-
-
-
-#sum_box .db:hover .icon {
-    opacity: 1;
-    color: #999999;
-}
-
-#sum_box .icon {
-    color: #fff;
-    font-size: 55px;
-    margin-top: 7px;
-    margin-bottom: 0px;
-    float: right;
-}
-
-
-.panel.income.db.mbm{
-        background-color: #5cb85c;
-}
-
-.panel.profit.db.mbm{
-        background-color: #5bc0de;
-}
-
-
-.panel.task.db.mbm{
-        background-color: #f0ad4e;
-}
-</style>
--->
-<!--Controls-->
-  <!----
-<a class="carousel-control-prev" href="#carousel-with-lb" role="button" data-slide="prev" style="color: blue;">
-    <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-    <span class="sr-only">Previous</span>
+<br><br><br><br><br><br>
+<section>
+  <div class="section-title">
+    <h3>What our <span style="color: #0d58ba;">Clients</span> say</h3>
+  </div><br>
+  <!-- Carousel wrapper -->
+<div id="carouselMultiItemExample" class="carousel slide carousel-dark text-center" data-ride="carousel">
+<!-- Controls -->
+<div class="d-flex justify-content-center mb-4">
+  <a class="carousel-control-prev position-relative" role="button" data-target="#carouselMultiItemExample" data-slide="prev"><i class="fa fa-chevron-circle-left fa-3x"></i>
+    <span class="sr-only" style="color: #000;">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#carousel-with-lb" role="button" data-slide="next" style="color: blue;">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <a class="carousel-control-next position-relative" role="button" data-target="#carouselMultiItemExample" data-slide="next"><i class="fa fa-chevron-circle-right fa-3x"></i>
     <span class="sr-only">Next</span>
   </a>
---> 
-  <!----./Controls-->
-
-  <!--Indicators-->
-  <!----
-  <ol class="carousel-indicators" >
-    <li data-target="#carousel-with-lb" data-slide-to="0" class="active secondary-color" style="color: tomato;border-radius: 100%;"></li>
-    <li data-target="#carousel-with-lb" data-slide-to="1" class="secondary-color"></li>
-    <li data-target="#carousel-with-lb" data-slide-to="2" class="secondary-color"></li>
-  </ol>-->
-  <!--/.Indicators-->
-
-  <!--Slides and lightbox-->
-<!----
-  <div class="carousel-inner mdb-lightbox" role="listbox">
-    <div id="mdb-lightbox-ui"></div>-->
-    <!--First slide--><!----
-    <div class=" carousel-item active text-center">
-
-      <figure class="col-lg-3 col-md-12 d-md-inline-block">
-        <a href="#"
-          data-size="1000x467">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(2).jpg"
-            class="img-fluid" style="width: 100%;">
-        </a>
-      </figure>
-
-      <figure class="col-lg-3 col-md-12 d-md-inline-block">
-        <a href="#"
-          data-size="1000x467">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(4).jpg"
-            class="img-fluid" style="width: 100%;">
-        </a>
-      </figure>
-
-      <figure class="col-lg-3 col-md-12 d-md-inline-block">
-        <a href="#"
-          data-size="1000x467">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(6).jpg"
-            class="img-fluid" style="width: 100%;">
-        </a>
-      </figure>
-    </div>
--->
-    <!--Second Slide--><!----
-    <div class="carousel-item text-center">
-
-      <figure class="col-lg-3 col-md-12 d-md-inline-block">
-        <a href="#"
-          data-size="1000x467">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(22).jpg"
-            class="img-fluid">
-        </a>
-      </figure>
-
-      <figure class="col-lg-3 col-md-12 d-md-inline-block">
-        <a href="#"
-          data-size="1000x467">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(25).jpg"
-            class="img-fluid">
-        </a>
-      </figure>
-
-      <figure class="col-lg-3 col-md-12 d-md-inline-block">
-        <a href="#"
-          data-size="1000x467">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(29).jpg"
-            class="img-fluid">
-        </a>
-      </figure>
-    </div>-->
-  <!--Third slide-->   <!----
-    <div class="carousel-item text-center">
- 
-      <figure class="col-lg-3 col-md-12 d-md-inline-block">
-        <a href="#"
-          data-size="1000x467">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(44).jpg"
-            class="img-fluid">
-        </a>
-      </figure>
-
-      <figure class="col-lg-3 col-md-12 d-md-inline-block">
-        <a href="#"
-          data-size="1000x467">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(45).jpg"
-            class="img-fluid">
-        </a>
-      </figure>
-
-      <figure class="col-lg-3 col-md-12 d-md-inline-block">
-        <a href="#"
-          data-size="1000x467">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(66).jpg"
-            class="img-fluid">
-        </a>
-      </figure>
-    </div>
-  </div>  
 </div>
+<!-- Inner -->
+<div class="carousel-inner py-4">
+  <!-- Single item -->
+  <div class="carousel-item active">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1597347324655-f99149f2e285?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjZ8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title" style="font-size: 14px;">John Doe</h4>
+             <p class="card-text" style="font-size: 12px;">
+              <i class="fa fa-quote-left"></i>   State-of-the-art facilities and very friendly trainers. Quite a peaceful environment to train as well.   <i class="fa fa-quote-right"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29ufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+            <div class="card-body">
+              <h4 class="card-title" style="font-size: 14px;">John Doe</h4>
+              <p class="card-text" style="font-size: 12px;">
+                <i class="fa fa-quote-left"></i>   The trainers here are highly supporting and very motivating. I've nearly achieved a couple of goals in less than a year now and look forward for more as well.   <i class="fa fa-quote-right"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+            <div class="card-body">
+              <h4 class="card-title" style="font-size: 14px;">John Doe</h4>
+              <p class="card-text" style="font-size: 12px;">
+                <i class="fa fa-quote-left"></i>   State-of-the-art facilities and very friendly trainers. Quite a peaceful environment to train as well.   <i class="fa fa-quote-right"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Single item -->
+  <div class="carousel-item">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-12">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8cGVyc29ufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+            <div class="card-body">
+              <h4 class="card-title" style="font-size: 14px;">John Doe</h4>
+              <p class="card-text" style="font-size: 12px;">
+                <i class="fa fa-quote-left"></i>   The trainers here are highly supporting and very motivating. I've nearly achieved a couple of goals in less than a year now and look forward for more as well.   <i class="fa fa-quote-right"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjV8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+            <div class="card-body">
+              <h4 class="card-title" style="font-size: 14px;">John Doe</h4>
+              <p class="card-text" style="font-size: 12px;">
+                <i class="fa fa-quote-left"></i>   State-of-the-art facilities and very friendly trainers. Quite a peaceful environment to train as well.   <i class="fa fa-quote-right"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1546817372-628669db4655?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDF8fGd5bXxlbnwwfHwwfA%3D%3D&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+            <div class="card-body">
+              <h4 class="card-title" style="font-size: 14px;">John Doe</h4>
+              <p class="card-text" style="font-size: 12px;">
+                <i class="fa fa-quote-left"></i>   The trainers here are highly supporting and very motivating. I've nearly achieved a couple of goals in less than a year now and look forward for more as well.   <i class="fa fa-quote-right"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Single item -->
+  <div class="carousel-item">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Nzh8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+            <div class="card-body">
+              <h4 class="card-title" style="font-size: 14px;">John Doe</h4>
+              <p class="card-text" style="font-size: 12px;">
+                <i class="fa fa-quote-left"></i>   State-of-the-art facilities and very friendly trainers. Quite a peaceful environment to train as well.   <i class="fa fa-quote-right"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1585892478508-130c50eb7a69?ixid=MXwxMjA3fDB8MHxzZWFyY2h8ODl8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+            <div class="card-body">
+              <h4 class="card-title" style="font-size: 14px">John Doe</h4>
+              <p class="card-text" style="font-size: 12px;">
+                <i class="fa fa-quote-left"></i>   The trainers here are highly supporting and very motivating. I've nearly achieved a couple of goals in less than a year now and look forward for more as well.   <i class="fa fa-quote-right"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1571388208497-71bedc66e932?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Njh8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+            <div class="card-body">
+              <h4 class="card-title" style="font-size: 14px;">John Doe</h4>
+              <p class="card-text" style="font-size: 12px;">
+                <i class="fa fa-quote-left"></i>   State-of-the-art facilities and very friendly trainers. Quite a peaceful environment to train as well.   <i class="fa fa-quote-right"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Inner -->
+</div>
+<!-- Carousel wrapper -->
+</section>
 
 <style>
-.carousel{
-    position: relative;
-}
-.carousel-control-prev{
-    left: 20;
-}
-.carousel-control-next, .carousel-control-prev {
-    position: absolute;
-    z-index: 1;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    width: 100%;
-    color: #fff;
+  .section-title {
     text-align: center;
-    opacity: .5;
-    transition: opacity .15s ease;
-}
-[role=button] {
-    cursor: pointer;
-}
-.carousel-control-next-icon, .carousel-control-prev-icon {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: no-repeat 50%/100% 100%;
-}
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
-.carousel-control-next{
-    right: 20;
-}
-.carousel-indicators {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: center;
-    justify-content: center;
-    padding-left: 0;
-    margin-right: 15%;
-    margin-left: 15%;
-    list-style: none;
-}
-.carousel-indicators .active{
-    opacity: 2;
-}
-.carousel-indicators li{
-    box-sizing: content-box;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    width: 30px;
-    height: 8px;
-    margin-right: 3px;
-    margin-left: 3px;
-    text-indent: -999px;
-    z-index: -10;
-    cursor: pointer;
-    background-color: #fff;
-    background-clip: padding-box;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    opacity: .5;
-    transition: .6s ease;
-}
-.carousel-inner {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-.text-center{
-    text-align: center  !important;
-}
-.carousel-item {
-    position: relative;
-    display: none;
-    float: left;
-    width: 100%;
-    margin-right: -100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transition: transform .6s ease-in-out,-webkit-transform .6s ease-in-out;
-}
-ol{
-    margin-bottom: 1rem;
-}
-a{
-    text-decoration: none;
-    color: rgb(83, 76, 76);
-    background-color: blue;
-}
-@media (min-width: 768px){
-.d-md-inline-block {
-    display: inline-block!important;
-}
-.col-md-12{
-    flex: 0 0 40%;
-    max-width: 50%;
-}
-}
-.img-fluid{
-    max-width: 30%;
-}
-img{
-    border-style: none;
+    padding-bottom: 30px;
+          }
+.section-title h3{
+            margin: 0 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+          }
+.card{
+  border: #000 0.5px solid
 }
 </style>
--->
-<!--Cards for Trainer info-->
+
+<br><br><br><br><br>
+
 <section>
-    <br>
-    <div class="container mt-3">
-        
-          <div class="row">
-            <div class="col-md-3 col-sm-6 item">
-              <div class="card item-card card-block">
-            <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
-                <h5 class="item-card-title mt-3 mb-3">John Development • Owner</h5>
-                <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
-                <br>
-                <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
+  <div class="section-title">
+    <h3> <span style="color: #0d58ba;">Gallery</span> </h3>
+  </div><br>
+  <!-- Carousel wrapper -->
+<div id="carouselMultiItemExample1" class="carousel slide carousel-dark text-center" data-ride="carousel">
+<!-- Controls -->
+<div class="d-flex justify-content-center mb-4">
+  <a class="carousel-control-prev" role="button" data-target="#carouselMultiItemExample1" data-slide="prev"><i class="fa fa-chevron-circle-left fa-3x"></i>
+    <span class="sr-only" style="color: #000;">Previous</span>
+  </a>
+  <a class="carousel-control-next" role="button" data-target="#carouselMultiItemExample1" data-slide="next"><i class="fa fa-chevron-circle-right fa-3x"></i>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<!-- Inner -->
+<div class="carousel-inner py-4">
+  <!-- Single item -->
+  <div class="carousel-item active">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1597347324655-f99149f2e285?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjZ8fGd5bSUyMHRyYWluZXJ8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
           </div>
-            </div>
-            <div class="col-md-3 col-sm-6 item">
-              <div class="card item-card card-block">
-            <img src="https://static.pexels.com/photos/7357/startup-photos.jpg" alt="Photo of sunset">
-                <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Manager</h5>
-                <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
-                <br>
-                <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
-          </div>
-            </div>
-            <div class="col-md-3 col-sm-6 item">
-              <div class="card item-card card-block">
-            <img src="https://static.pexels.com/photos/262550/pexels-photo-262550.jpeg" alt="Photo of sunset">
-                <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Instructor</h5>
-                <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
-                <br>
-                <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
-          </div>
-            </div>
-            <div class="col-md-3 col-sm-6 item">
-              <div class="card item-card card-block">
-            <img src="https://static.pexels.com/photos/326424/pexels-photo-326424.jpeg" alt="Photo of sunset">
-                <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Personal Trainer</h5>
-                <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
-                <br>
-                <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
-          </div>
-            </div>    
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-3 col-sm-6 item">
-              <div class="card item-card card-block">
-            <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
-                <h5 class="item-card-title mt-3 mb-3">John Development • Trainer</h5>
-                <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
-                <br>
-                <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
-          </div>
-            </div>
-            <div class="col-md-3 col-sm-6 item">
-              <div class="card item-card card-block">
-            <img src="https://static.pexels.com/photos/7357/startup-photos.jpg" alt="Photo of sunset">
-                <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Personal Trainer</h5>
-                <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
-                <br>
-                <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
-          </div>
-            </div>
-            <div class="col-md-3 col-sm-6 item">
-              <div class="card item-card card-block">
-            <img src="https://static.pexels.com/photos/262550/pexels-photo-262550.jpeg" alt="Photo of sunset">
-                <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Personal Trainer</h5>
-                <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
-                <br>
-                <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
-          </div>
-            </div>
-            <div class="col-md-3 col-sm-6 item">
-              <div class="card item-card card-block">
-            <img src="https://static.pexels.com/photos/326424/pexels-photo-326424.jpeg" alt="Photo of sunset">
-                <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Trainer</h5>
-                <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
-                <br>
-                <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
-          </div>
-            </div>    
-          </div>
-          
         </div>
-    
-        <style>
-            img{
-          height:150px;
-          width:100%;
-        }
-        
-        .item{
-          padding-left:16px;
-          padding-right:16px;
-        }
-        .item-card{
-          transition:0.5s;
-          cursor:pointer;
-          border: 1px solid rgb(69, 69, 226);
-        }
-        .item-card-title{  
-          font-size:15px;
-          transition:1s;
-          cursor:pointer;
-        }
-        .card:hover{
-          transform: scale(1.05);
-          box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
-        }
-        .card-text{
-          height:100px;  
-          font-size: 12px;
-        }
-        .card::before, .card::after {
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          transform: scale3d(0, 0, 1);
-          transition: transform .3s ease-out 0s;
-          background: rgba(255, 255, 255, 0.1);
-          content: '';
-          pointer-events: none;
-        }
-        .card::before {
-          transform-origin: left top;
-        }
-        .card::after {
-          transform-origin: right bottom;
-        }
-        
-        </style>
+
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29ufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+          </div>
+        </div>
+
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Single item -->
+  <div class="carousel-item">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-12">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8cGVyc29ufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+          </div>
+        </div>
+
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjV8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+          </div>
+        </div>
+
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1546817372-628669db4655?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDF8fGd5bXxlbnwwfHwwfA%3D%3D&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Single item -->
+  <div class="carousel-item">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Nzh8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1585892478508-130c50eb7a69?ixid=MXwxMjA3fDB8MHxzZWFyY2h8ODl8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1571388208497-71bedc66e932?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Njh8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="..."/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Inner -->
+</div>
+<!-- Carousel wrapper -->
 </section>
+
+<style>
+  .section-title {
+    text-align: center;
+    padding-bottom: 30px;
+          }
+.section-title h3{
+            margin: 0 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+          }
+.card{
+  border: #000 0.5px solid
+}
+</style>
+
     <!-- just to make scrolling effect possible -->
     <!---
         <h2 class="myH2">What is this ?</h2>
@@ -969,7 +744,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 62.5%;
     font-size: 10px;
-    background-color: rgb(206, 206, 206);
+    background-color: rgb(241, 241, 241);
 }
 /*-- Inspiration taken from abdo steif -->
 /* --> https://codepen.io/abdosteif/pen/bRoyMb?editors=1100*/
@@ -994,12 +769,12 @@ body {
 
 .nav div.logo a {
     text-decoration: none;
-    color: #fff;
+    color: rgb(69, 160, 190);
     font-size: 2.5rem;
 }
 
 .nav div.logo a:hover {
-    color: #14c4ca;
+    color: #19c8ce;
 }
 
 .nav div.main_list {
@@ -1025,13 +800,13 @@ body {
 
 .nav div.main_list ul li a {
     text-decoration: none;
-    color: #fff;
+    color: rgb(69, 160, 190);
     line-height: 65px;
     font-size: 2.4rem;
 }
 
 .nav div.main_list ul li a:hover {
-    color: #14c4ca;
+    color: #19c8ce
 }
 
 
@@ -1336,7 +1111,7 @@ $('.navTrigger').click(function () {
         <footer class="footer-distributed">
             <div class="footer-left">
 
-				<h3>Company<span> logo</span></h3>
+				<h3>The<span> BodyWorks</span></h3>
 
 				<p class="footer-links">
 					<a href="#">Home</a>
@@ -1352,7 +1127,7 @@ $('.navTrigger').click(function () {
 					<a href="#">Careers</a>
 				</p>
 
-				<p class="footer-company-name">Company Name &copy; 2021</p>
+				<p class="footer-company-name">The BodyWorks &copy; 2021</p>
                 <p class="footer-company-name">All rights reserved</p><br>
                 <a href="#" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none;">Terms of Services</a>&nbsp; &nbsp;<a href="#" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none">Privacy Policy</a>
 			</div>
@@ -1371,15 +1146,15 @@ $('.navTrigger').click(function () {
 
 				<div>
 					<i class="fa fa-envelope"></i>
-					<p><a href="/cdn-cgi/l/email-protection#ff8c8a8f8f908d8bbf9c90928f9e9186d19c9092"><span class="__cf_email__" data-cfemail="ea999f9a9a85989eaa8985879a8b8493c4898587">abc@gmail.com</span></a></p>
+					<p><a href="/cdn-cgi/l/email-protection#ff8c8a8f8f908d8bbf9c90928f9e9186d19c9092"><span class="__cf_email__" data-cfemail="ea999f9a9a85989eaa8985879a8b8493c4898587">thebodyworkks@gmail.com</span></a></p>
 				</div>
 
 			</div>
 
 			<div class="footer-right">
                 <p class="footer-company-about">
-					<span>About the company</span>
-					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+					<span>About The BodyWorks</span>
+					Some example text to cover up the content of the para as of now. Some example text to cover up the content
 				</p>
 
 				<div class="footer-icons">
@@ -1514,7 +1289,7 @@ $('.navTrigger').click(function () {
 
 <div class="customer-service" style="bottom: 40px;">
     <div class="item" id="go-top">
-        <i class="fa fa-chevron-circle-up-3x"></i>
+        <i class="fa fa-chevron-circle-up fa-4x"></i>
     </div>
 </div>
 <style>
@@ -1525,16 +1300,13 @@ $('.navTrigger').click(function () {
 }
 .customer-service .item {
     cursor: pointer;
-    margin-top: 8px;
-    width: 56px;
-    height: 56px;
-    background-color: #0e0e0e;
-    border-radius: 6px;
+    margin-top: 20px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
     text-align: center;
     position: relative;
-    border: 1px solid #e9e9e9;
     box-sizing: border-box;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
 }
 .chevron-circle-up {
     font-style: normal;

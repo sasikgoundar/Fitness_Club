@@ -1,4 +1,7 @@
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -16,14 +19,13 @@
 	<nav class="nav">
 		<div class="container">
 			<div class="logo">
-				<a href="#">Logo</a>
+				<a href="{% url 'Homepage' %}">Logo</a>
 			</div>
 			<div id="mainListDiv" class="main_list">
 				<ul class="navlinks">
-					<li><a href="#">About</a></li>
-					<li><a href="#">Register</a></li>
-					<li><a href="#">Sign In</a></li>
-					<li><a href="#">My Settings</a></li>
+					<li><a href="{% url 'Aboutus' %}">About</a></li>
+					<li><a href="{% url 'register' %}">Register</a></li>
+					<li><a href="{% url 'login' %}">Sign In</a></li>
 				</ul>
 			</div>
 			<span class="navTrigger">
@@ -90,6 +92,9 @@
 
         <div class="form-group text-center">
             Don't have an account? <a href="{% url 'register' %}" style="text-decoration: none;">Sign Up</a></label>
+         </div>
+		<div class="form-group text-center">
+            <a href="{% url 'reset_password' %}" style="text-decoration: none;">Forgot Password?</a></label>
          </div>
          <div class="form-group text-center">
              <button type="submit" class="btn btn-primary btn-lg">Login</button>

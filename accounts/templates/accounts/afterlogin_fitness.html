@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+<title>After login</title>
+<link href="#" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+<!--navbar-->
+<nav class="nav">
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'Afterlogin' %}">Logo</a>
+        </div>
+        <div id="mainListDiv" class="main_list">
+            <ul class="navlinks ml-auto">
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'login' %}">Sign In</a></li>
+                {% endif %}
+
+                <li><a href="{% url 'Aboutus' %}">About</a></li>
+
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'MyProfile' %}">My Settings</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+              <li><a href="#">Hello, {{request.user}}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <span class="navTrigger">
+            <i></i>
+            <i></i>
+            <i></i>
+        </span>
+    </div>
+</nav>
+<br><br>
+
+<!-- Jquery needed -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/scripts.js"></script>
+
+<!-- Function used to shrink nav bar removing paddings and adding black background -->
+<script>
+    $(window).scroll(function() {
+        if ($(document).scrollTop() > 50) {
+            $('.nav').addClass('affix');
+            console.log("OK");
+        } else {
+            $('.nav').removeClass('affix');
+        }
+    });
+</script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 62.5%;
+    font-size: 10px;
+    background-color: rgb(241, 241, 241);
+}
+/*-- Inspiration taken from abdo steif -->
+/* --> https://codepen.io/abdosteif/pen/bRoyMb?editors=1100*/
+
+/* Navbar section */
+/*<!--#14c4ca-->*/
+
+.nav {
+    width: 100%;
+    height: 65px;
+    position: fixed;
+    line-height: 65px;
+    text-align: center;
+    z-index: 10;
+}
+
+.nav div.logo {
+    float: left;
+    width: auto;
+    height: auto;
+    padding-left: 3rem;
+}
+
+.nav div.logo a {
+    text-decoration: none;
+    color: rgb(69, 160, 190);
+    font-size: 2.5rem;
+}
+
+.nav div.logo a:hover {
+    color: #19c8ce;
+}
+
+.nav div.main_list {
+    height: 65px;
+    float: right;
+}
+
+.nav div.main_list ul {
+    width: 100%;
+    height: 65px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav div.main_list ul li {
+    width: auto;
+    height: 65px;
+    padding: 0;
+    padding-right: 3rem;
+}
+
+.nav div.main_list ul li a {
+    text-decoration: none;
+    color: rgb(69, 160, 190);
+    line-height: 65px;
+    font-size: 2.4rem;
+}
+
+.nav div.main_list ul li a:hover {
+    color: #19c8ce;
+}
+
+
+/* Home section */
+
+
+.navTrigger {
+    display: none;
+}
+
+.nav {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+
+/* Media qurey section */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .navTrigger {
+        display: block;
+    }
+    .nav div.logo {
+        margin-left: 15px;
+    }
+    .nav div.main_list {
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+    }
+    .nav div.show_list {
+        height: auto;
+        display: none;
+    }
+    .nav div.main_list ul {
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: #111;
+        /*same background color of navbar*/
+        background-position: center top;
+    }
+    .nav div.main_list ul li {
+        width: 100%;
+        text-align: right;
+    }
+    .nav div.main_list ul li a {
+        text-align: center;
+        width: 100%;
+        font-size: 3rem;
+    }
+    .nav div.media_button {
+        display: block;
+    }
+}
+
+
+/* Animation */
+/* Inspiration taken from Dicson https://codemyui.com/simple-hamburger-menu-x-mark-animation/ */
+
+.navTrigger {
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    margin: auto;
+    position: absolute;
+    right: 30px;
+    top: 0;
+    bottom: 0;
+}
+
+.navTrigger i {
+    background-color: #fff;
+    border-radius: 2px;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+}
+
+.navTrigger i:nth-child(1) {
+    -webkit-animation: outT 0.8s backwards;
+    animation: outT 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger i:nth-child(2) {
+    margin: 5px 0;
+    -webkit-animation: outM 0.8s backwards;
+    animation: outM 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger i:nth-child(3) {
+    -webkit-animation: outBtm 0.8s backwards;
+    animation: outBtm 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger.active i:nth-child(1) {
+    -webkit-animation: inT 0.8s forwards;
+    animation: inT 0.8s forwards;
+}
+
+.navTrigger.active i:nth-child(2) {
+    -webkit-animation: inM 0.8s forwards;
+    animation: inM 0.8s forwards;
+}
+
+.navTrigger.active i:nth-child(3) {
+    -webkit-animation: inBtm 0.8s forwards;
+    animation: inBtm 0.8s forwards;
+}
+
+@-webkit-keyframes inM {
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+@keyframes inM {
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes outM {
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+@keyframes outM {
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes inT {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@keyframes inT {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes outT {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@keyframes outT {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes inBtm {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@keyframes inBtm {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes outBtm {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@keyframes outBtm {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+.affix {
+    padding: 0;
+    background-color: #111;
+}
+
+.myH2 {
+	text-align:center;
+	font-size: 4rem;
+}
+.myP {
+	text-align: justify;
+	padding-left:15%;
+	padding-right:15%;
+	font-size: 20px;
+}
+@media all and (max-width:700px){
+	.myP {
+		padding:2%;
+	}
+}
+</style>
+
+<script>
+$('.navTrigger').click(function () {
+    $(this).toggleClass('active');
+    console.log("Clicked menu");
+    $("#mainListDiv").toggleClass("show_list");
+    $("#mainListDiv").fadeIn();
+
+});
+</script>
+
+
+<br><br><br><br><br><br>
+<section class="pricing" id="pricing">
+
+    <div class="section-title">
+        <h3>Our Amazing <span style="color: #0d58ba;">Membership</span> Deals</h3>
+      </div><br><br>
+      <div class="row">
+    
+        <div class="col-lg-3 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+          <div class="box">
+            <h3>Full-Service</h3>
+            <p>(Recommended)</p>
+            <h4><sup>Rs.</sup>16800<span> / year</span></h4>
+            <ul>
+              <li>Full access to all the equipments and classes</li>
+              <li>One-on-one workout sessions</li>
+              <li>Live recording and monitoring of each workout session</li>
+              <li>Starts with an initial evaluation session to help you accomplish your goals better</li>
+              <li class="na">Cancel Anytime/ No Refund</li>
+            </ul>
+            <div class="btn-wrap">
+              <a href="{% url 'Membership' %}" class="btn-buy">Buy Now</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-lg-3 col-md-6 mt-4 mt-md-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+          <div class="box featured">
+            <h3>Equipment Only Membership</h3>
+            <h4><sup>Rs.</sup>14500<span> / year</span></h4>
+            <ul>
+              <li>No trainer supervision</li>
+              <li>No workout recording</li>
+              <li>Anytime use of our strength, cardio and free weight equipments</li>
+              <li>Additional 10% off after 2 months of this plan</li>
+            </ul>
+            <div class="btn-wrap">
+              <a href="{% url 'Membership' %}" class="btn-buy">Buy Now</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-lg-3 col-md-6 mt-4 mt-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+          <div class="box">
+            <h3>Monthly Pay-as-you-Go</h3>
+            <h4><sup>Rs.</sup>3000<span> / month</span></h4>
+            <ul>
+              <li>A plan that offers flexibility without a minimum term contract</li>
+              <li>Available for Full Service, Unlimited Classes and Equipment Only membership options</li>
+              <li>You can cancel any time before the 25th of the month with no penalty.  </li>
+            </ul>
+            <div class="btn-wrap">
+              <a href="{% url 'Membership' %}" class="btn-buy">Buy Now</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-lg-3 col-md-6 mt-4 mt-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+            <div class="box">
+              <h3>6-Week Weight Loss Program</h3>
+              <h4><sup>Rs.</sup>2500<span> / program</span></h4>
+              <ul>
+                <li>Taking before measurements and testing metabolic rate to determine your ideal calorie intake</li>
+                <li>Personalized eating and exercise handbook for you</li>
+                <li>Personalized review sessions with trainer</li>
+                <li>Live monitoring for best results</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="{% url 'Membership' %}" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div>
+    
+      </div>
+    </section>
+    
+      <style>
+          .pricing{
+              padding: 60px 0;
+              overflow: hidden;
+          }
+            .section-title {
+    text-align: center;
+    padding-bottom: 30px;
+          }
+          .section-title h3{
+            margin: 15px 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+          }
+          .row {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: calc(var(--bs-gutter-y) * -1);
+        margin-right: calc(var(--bs-gutter-x)/ -2);
+        margin-left: calc(var(--bs-gutter-x)/ -2);
+    }
+    [data-aos^=fade][data-aos^=fade].aos-animate {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+    .pricing .box {
+        padding: 20px;
+        background: #fff;
+        text-align: center;
+        box-shadow: 0px 0px 4px rgb(0 0 0 / 12%);
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+        border: #111 0.5px solid;
+    }
+    .pricing .box h3 {
+        font-weight: 400;
+        margin: -20px -20px 20px -20px;
+        padding: 20px 15px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #777777;
+        background: #f8f8f8;
+        line-height: 1.2;
+    }
+    .pricing .box p{
+      font-size: 12px;
+      font-weight: 300;
+    text-align: center;
+    color: #000000;
+    }
+    .pricing .box h4 {
+        font-size: 36px;
+        color: #106eea;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 20px;
+    }
+    .pricing .box ul {
+        padding: 0;
+        list-style: none;
+        color: #444444;
+        text-align: center;
+        line-height: 20px;
+        font-size: 14px;
+        margin-bottom: 1rem;
+    }
+    .pricing .box ul li {
+        padding-bottom: 16px;
+    }
+    .pricing .box h4 sup {
+        font-size: 20px;
+        top: -15px;
+        left: -3px;
+        vertical-align: baseline;
+    }
+    .pricing .box h4 span {
+        color: #bababa;
+        font-size: 16px;
+        font-weight: 300;
+    }
+    .pricing .btn-wrap {
+        margin: 20px -20px -20px -20px;
+        padding: 20px 15px;
+        background: #f8f8f8;
+        text-align: center;
+    }
+    .pricing .btn-buy {
+        background: #106eea;
+        display: inline-block;
+        padding: 8px 35px 10px 35px;
+        border-radius: 4px;
+        color: #fff;
+        transition: none;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+      </style>
+
+      <section class="border p-4 d-flex justify-content-center mb-4">
+        <div class="card text-center" style="max-width: 100rem;">
+            <div class="card-body">
+              <p class="card-text">
+                  Gym Type- Regular<br>
+                  Gym for Unisex<br>
+                Opening Hours: <i class="fa fa-calendar">   Monday- Saturday - 6:00 AM - 10:00 PM</i> 
+                <br><br>
+                Manager Name: John Doe
+                <br>
+                Manager Contact: 1234678999
+              </p>
+            </div>
+            <div class="card-footer text-muted">If you haven't taken a free trial yet, attend now!!</div><br>
+               <a href="#" class="btn btn-primary" style="margin-left: 300px; margin-right: 300px; font-size: 14px; ">Book Free Trial</a><br>
+          </div>
+      </section>
+
+      <style>
+          .p-4{
+              padding: 1.5rem !important;
+          }
+          .mb-4{
+              margin-bottom: 1.5rem!important;
+          }
+          .card {
+    position: relative;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: .25rem;
+    border: #111 0.5px solid;
+}
+.card-header {
+    padding: .5rem 1rem;
+}
+.card-body {
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+.card-title h5{
+margin-bottom: 0.5rem;
+font-size: 1.25rem;
+font-weight: 500;
+line-height: 1.2;
+}
+.btn {
+    text-transform: uppercase;
+    vertical-align: bottom;
+    border: 0;
+    cursor: pointer;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%), 0 2px 10px 0 rgb(0 0 0 / 10%);
+    font-weight: 500;
+    padding: .625rem 1.5rem .5rem;
+    font-size: .75rem;
+    line-height: 1.5;
+}
+          .card-text{
+              font-size: 14px;
+          }
+          .card-footer{
+              font-size: 14px;
+          }
+      </style>
+
+<section id="faq" class="faq section-bg">
+    <div class="container aos-init aos-animate" data-aos="fade-up">
+<br>
+      <div class="section-title">
+        <h3>More <span style="color: #0d58ba;">Details</span></h3>
+      </div><br>
+<div class="row justify-content-center">
+<div class="col-xl-10">
+  <ul class="faq-list">
+
+    <li>
+      <div data-bs-toggle="collapse" class="question" href="#faq1" aria-expanded="true">CALISTHENICS <i class="fa fa-bullseye"></i></div>
+      <div id="faq1" class="collapse show" data-bs-parent=".faq-list"><br>
+        <p>
+            Calisthenics or callisthenics is a form of strength training consisting of a variety of movements that exercise large muscle groups, such as running, standing, grasping, pushing, etc. These exercises are often performed rhythmically and with minimal equipment, as bodyweight exercises. These exercises are performed with differing levels of intensity and rhythm. Sometimes these exercises are done with light handheld tools like rings and wands.
+        </p><br>
+        <p>
+            Have doubts?
+        </p><i class="fa fa-phone" style="padding-left: 30px;">+91 1234567890</i>
+      </div>
+    </li>
+
+    <li>
+      <div data-bs-toggle="collapse" class="question" aria-expanded="true">AEROBICS <i class="fa fa-bullseye"></i></div>
+      <div id="faq2" class="collapse show" data-bs-parent=".faq-list"><br>
+        <p>
+            Aerobics is a form of physical exercise that combines rhythmic aerobic exercise with stretching and strength training routines with the goal of improving all elements of fitness (flexibility, muscular strength, and cardio-vascular fitness). Swimming, cycling, walking, rowing, etc are some of the common aerobic excercises.  It is usually performed to music and may be practiced in a group setting led by an instructor (fitness professional), although it can be done solo and without musical accompaniment.
+        </p><br>
+        <p>
+            Have doubts?
+        </p><i class="fa fa-phone" style="padding-left: 30px;">+91 1234567890</i>
+      </div>
+    </li>
+
+    <li>
+      <div data-bs-toggle="collapse" class="question" aria-expanded="true">ANAEROBICS <i class="fa fa-bullseye"></i></div>
+      <div id="faq3" class="collapse show" data-bs-parent=".faq-list"><br>
+        <p>
+            Anaerobic exercise is any activity that breaks down glucose for energy without using oxygen. Generally, these activities are of short length with high intensity. The idea is that a lot of energy is released within a small period of time, and your oxygen demand surpasses the oxygen supply. high intensity interval training (HIIT) Heavy weight lifting, calisthenics, like plyometrics, jump squats, or box jumps, sprinting (while running, cycling, or swimming) are some common examples.
+             
+        </p><br>
+        <p>
+            Have doubts?
+        </p><i class="fa fa-phone" style="padding-left: 30px;">+91 1234567890</i>
+      </div>
+    </li>
+
+    <li>
+      <div data-bs-toggle="collapse" class="question">CROSS FITNESS <i class="fa fa-bullseye"></i></div>
+      <div id="faq4" class="collapse show" data-bs-parent=".faq-list"><br>
+        <p>
+            A form of high intensity interval training, CrossFit is a strength and conditioning workout that is made up of functional movement performed at a high intensity level. These movements are actions that you perform in your day-to-day life, like squatting, pulling, pushing etc. CrossFit training exercises promises to keep your body fit and firm, by burning out calories in a quick pace.
+        </p><br>
+        <p>
+            Have doubts?
+        </p><i class="fa fa-phone" style="padding-left: 30px;">+91 1234567890</i>
+      </div>
+    </li>
+
+    <li>
+      <div data-bs-toggle="collapse" class="question">MOBILITY <i class="fa fa-bullseye"></i></div>
+      <div id="faq5" class="collapse show" data-bs-parent=".faq-list"><br>
+        <p>
+            Flexibility is the ability of your joints to move through their full range of motion without pain or stiffness. It also refers to the pliability of the muscles that support the joints. Flexible muscles and tendons allow for greater range of motion during activities. There are many exercises you can do to improve your flexibility, including stretching. Static stretching, or holding one position for an extended period, might be your preferred method of warming up before a workout.
+        </p><br>
+        <p>
+            Have doubts?
+        </p><i class="fa fa-phone" style="padding-left: 30px;">+91 1234567890</i>
+      </div>
+    </li>
+
+    <li>
+      <div data-bs-toggle="collapse" class="question">YOGA <i class="fa fa-bullseye"></i></div>
+      <div id="faq6" class="collapse show" data-bs-parent=".faq-list"><br>
+        <p>
+            Yoga is a group of physical, mental, and spiritual practices or disciplines which originated in ancient India. Yoga is one of the six Āstika (orthodox) schools of Indian philosophical traditions. There is a broad variety of yoga schools, practices, and goals in Hinduism, Buddhism, and Jainism.The term "Yoga" in the Western world often denotes a modern form of hatha yoga and yoga as exercise, consisting largely of the postures or asanas.
+        </p><br>
+        <p>
+            Have doubts?
+        </p><i class="fa fa-phone" style="padding-left: 30px;">+91 1234567890</i>
+      </div>
+    </li>
+
+  </ul>
+</div>
+</div>
+    </div>
+</section>
+
+<style>
+    .faq {
+    padding: 60px 0;
+}
+.section-title {
+    text-align: center;
+    padding-bottom: 40px;
+}
+.section-title h3 {
+    margin: 15px 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+}
+    .justify-content-center {
+    justify-content: center!important;
+}
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x)/ -2);
+    margin-left: calc(var(--bs-gutter-x)/ -2);
+}
+.faq .faq-list {
+    padding: 0;
+    list-style: none;
+}
+ul{
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.faq .faq-list li {
+    border-bottom: 1px solid #d4e5fc;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+.faq .faq-list .question {
+    display: block;
+    position: relative;
+    font-family: #106eea;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+    padding-left: 25px;
+    cursor: pointer;
+    color: #0d58ba;
+    transition: 0.3s;
+}
+.faq .faq-list i {
+    font-size: 16px;
+    position: absolute;
+    left: 0;
+}
+.faq .faq-list p {
+    margin-bottom: 0;
+    padding: 10px 0 0 25px;
+    font-size: 14px;
+}
+</style>
+
+    
+<footer class="footer-distributed">
+            <div class="footer-left">
+
+				<h3>The<span> BodyWorks</span></h3>
+
+				<p class="footer-links">
+					<a href="#">Home</a>
+					·
+					<a href="#">Pricing</a>
+					·
+					<a href="#">Latest News</a>
+					·
+					<a href="#">Faq</a>
+					·
+					<a href="#">Careers</a>
+				</p>
+
+				<p class="footer-company-name">The BodyWorks &copy; 2021</p>
+                <p class="footer-company-name">All rights reserved</p><br>
+                <a href="#" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none;">Terms of Services</a>&nbsp; &nbsp;<a href="#" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none">Privacy Policy</a>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>21 Revolution Street</span> Paris, France</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+1 555 123456</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="/cdn-cgi/l/email-protection#ff8c8a8f8f908d8bbf9c90928f9e9186d19c9092"><span class="__cf_email__" data-cfemail="ea999f9a9a85989eaa8985879a8b8493c4898587">bodyworkks@gmail.com</span></a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+                <p class="footer-company-about">
+					<span>About The BodyWorks</span>
+					Some example text to cover up the content of the para as of now. Some example text to cover up the content
+				</p>
+
+				<div class="footer-icons">
+
+					<a href="#"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+					<a href="#"><i class="fa fa-linkedin"></i></a>
+					<a href="#"><i class="fa fa-youtube"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+
+				</div>
+
+			</div>
+        </footer>
+</body>
+<style>
+    .footer-distributed {
+background-color: #292c2f;
+box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+box-sizing: border-box;
+width: 100%;
+text-align: left;
+font: bold 16px sans-serif;
+padding: 55px 50px;
+margin-top: 120px;
+    }
+    @media (max-height: 800px){
+ footer {
+position: static;
+}
+    }
+.footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+width: 40%;
+display: inline-block;
+vertical-align: top;
+}
+.footer-distributed h3 {
+color: #ffffff;
+font: normal 36px 'Montserrat', cursive;
+margin: 0;
+}
+.footer-distributed .footer-links {
+color: #ffffff;
+margin: 20px 0 12px;
+padding: 0;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-links a {
+display: inline-block;
+line-height: 1.8;
+text-decoration: none;
+color: inherit;
+}
+.footer-distributed .footer-company-name {
+color: #8f9296;
+font-size: 14px;
+font-weight: normal;
+margin: 0;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-center {
+width: 35%;
+}
+.footer-distributed .footer-center i {
+background-color: #33383b;
+color: #ffffff;
+font-size: 25px;
+width: 38px;
+height: 38px;
+border-radius: 50%;
+text-align: center;
+line-height: 42px;
+margin: 10px 15px;
+vertical-align: middle;
+}
+.footer-distributed .footer-center p {
+display: inline-block;
+color: #ffffff;
+vertical-align: middle;
+margin: 0;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-center p span {
+display: block;
+font-weight: normal;
+font-size: 14px;
+line-height: 2;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-right {
+width: 20%;
+}
+.footer-distributed .footer-company-about {
+line-height: 20px;
+color: #92999f;
+font-size: 13px;
+font-weight: normal;
+margin: 0;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-company-about span {
+display: block;
+color: #ffffff;
+font-size: 14px;
+font-weight: bold;
+margin-bottom: 20px;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-company-about {
+line-height: 20px;
+}
+.footer-distributed .footer-icons {
+margin-top: 25px;
+}
+.footer-distributed .footer-icons a {
+display: inline-block;
+width: 35px;
+height: 35px;
+cursor: pointer;
+background-color: #33383b;
+border-radius: 2px;
+font-size: 20px;
+color: #ffffff;
+text-align: center;
+line-height: 35px;
+margin-right: 3px;
+margin-bottom: 5px;
+font-family: 'Montserrat',sans-serif;
+}
+</style>
+
+<div class="customer-service" style="bottom: 40px;">
+    <div class="item" id="go-top">
+        <i class="fa fa-chevron-circle-up fa-4x"></i>
+    </div>
+  </div>
+  <style>
+    .customer-service {
+    position: fixed;
+    z-index: 10;
+    right: 40px;
+  }
+  .customer-service .item {
+    cursor: pointer;
+    margin-top: 20px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+  }
+  .chevron-circle-up {
+    font-style: normal;
+    font-size: 16px;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+  }
+  .customer-service .item .chevron-circle-up {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: #fcf8f9;
+    transition: 0.3s;
+  }
+  .chevron-circle-up{
+    content: "\e693";
+  }
+  </style>
+  <script>
+    /**
+     * 客服挂件
+     */
+    var $goTop = $('#go-top');
+    var $customService = $('.customer-service');
+    var customerMessage = $('#customer-message .message');
+  
+    $(window).scroll(function () {
+      var winHeight = $(window).height();
+      var scrollHeight = $(document).scrollTop();
+      if (scrollHeight > winHeight) {
+        $goTop.show();
+        $customService.css('bottom', '40px');
+      } else {
+        $goTop.hide();
+        $customService.css('bottom', '60px');
+      }
+    });
+  
+    $goTop.click(function () {
+      $('html ,body').animate({scrollTop: 0}, 300);
+    });
+  
+    if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+      $('.customer-service').hide();
+    } else {
+      $('.customer-service').show();
+    }
+  </script>
+
+<!-- Function used to shrink nav bar removing paddings and adding black background -->
+<script>
+    $(window).scroll(function() {
+        if ($(document).scrollTop() > 50) {
+            $('.nav').addClass('affix');
+            console.log("OK");
+        } else {
+            $('.nav').removeClass('affix');
+        }
+    });
+</script>
+{% endblock %}
+</html>

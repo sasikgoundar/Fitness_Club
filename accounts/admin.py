@@ -6,5 +6,6 @@ from .models import *
 admin.site.register(Trainer)
 admin.site.register(Fitness)
 admin.site.register(Member)
+admin.site.register(Plan)
 
 
