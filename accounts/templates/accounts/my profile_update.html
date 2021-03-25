@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-<title>Sign Up</title>
+<title>Member details</title>
 <link href="#" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,15 +18,26 @@
 	<nav class="nav">
 		<div class="container">
 			<div class="logo">
-				<a href="{% url 'Homepage' %}">Logo</a>
+				<a href="{% url 'Afterlogin' %}">Logo</a>
 			</div>
 			<div id="mainListDiv" class="main_list">
-				<ul class="navlinks">
-					<li><a href="{% url 'Aboutus' %}">About</a></li>
-					<li><a href="{% url 'register' %}">Register</a></li>
-					<li><a href="{% url 'login' %}">Sign In</a></li>
-				</ul>
-			</div>
+            <ul class="navlinks ml-auto">
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'login' %}">Sign In</a></li>
+                {% endif %}
+
+                <li><a href="{% url 'Aboutus' %}">About</a></li>
+
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'MyProfile' %}">My Settings</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+              <li><a href="#">Hello, {{request.user}}</a></li>
+                {% endif %}
+            </ul>
+        </div>
 			<span class="navTrigger">
 				<i></i>
 				<i></i>
@@ -55,88 +68,182 @@
 	<body>
   <!--Attributes-->
 <div class="signup-form">
-    <form action="" method="POST">
-        {% csrf_token %}
-        <h2>Sign Up</h2>
-        <br>
+    <form action="" method="POST", enctype="multipart/form-data">
+		{% csrf_token %}
+    <h2>Member  details</h2>
+    <br>
 		<hr>
+
 		<div class="form-group">
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<span class="input-group-text">
-						<span class="fa fa-user"></span>
-					</span>
-				</div>
-				{{form.username}}
-			</div>
-        </div>
-        <div class="form-group">
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<span class="input-group-text">
-						<span class="fa fa-user"></span>
+						<i class="fa fa-home"></i>
 					</span>
 				</div>
 				{{form.first_name}}
 			</div>
         </div>
+
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<i class="fa fa-home"></i>
+					</span>
+				</div>
+				{{form.last_name}}
+			</div>
+        </div>
+
+
         <div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<span class="fa fa-user"></span>
+					</span>
+				</div>
+
+				{{form.dob}}
+			</div>
+			<small>Enter Date of Birth above in mentioned format.</small>
+        </div>
+		<!--<div class="form-group">
+          <select id="select" class="form-control" name="gender" aria-placeholder="Choose Category" required>
+            <option disabled selected>Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+         </div>	-->
+         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">
-                <span class="fa fa-user"></span>
+                <span class="fa fa-phone"></span>
               </span>
             </div>
-            {{form.last_name}}
+            {{form.phone_no}}
+
           </div>
+        </div>
+
+		<div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <span class="fa fa-phone"></span>
+              </span>
             </div>
+            {{form.alt_phone_no}}
+
+          </div>
+        </div>
+
+        <!--<div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <span class="fa fa-phone"></span>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control" name="contact no." placeholder="Alternate Contact No." required="required">
+                </div>
+        </div>-->
+
+		<div class="form-group">
+        <!-- <select id="select" class="form-control" aria-placeholder="Choose Category" required title="Gender", name="gender">
+            <option disabled selected>Gender</option>
+            <option>Male</option>
+            <option>Female</option
+          </select>-->
+			<span>Gender: </span>
+	{{form.gender}}
+         </div>
+
         <div class="form-group">
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<span class="input-group-text">
-						<i class="fa fa-paper-plane"></i>
+						<i class="fa fa-home"></i>
 					</span>
 				</div>
-				{{form.email}}
+
+				{{form.address}}
 			</div>
         </div>
+
 		<div class="form-group">
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<span class="input-group-text">
-						<i class="fa fa-lock"></i>
+						<i class="fa fa-home"></i>
 					</span>
 				</div>
-				{{form.password1}}
+				{{form.fitness}}
 			</div>
         </div>
+
+		<!--<div class="form-group">
+          <select id="checkbox" class="form-control" aria-placeholder="Choose Category" required title="1st preference" name="fitness">
+            <option disabled selected>Choose 1st preference for Category</option>
+            <option>Yoga</option>
+            <option>Cross Fitness</option>
+            <option>Aerobics</option>
+            <option>Mobility</option>
+            <option>Calisthenics</option>
+            <option>Weightlifting</option>
+          </select>
+            </div>-->
+
 		<div class="form-group">
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<span class="input-group-text">
-						<i class="fa fa-lock"></i>
-						<i class="fa fa-check"></i>
+						<i class="fa fa-home"></i>
 					</span>
 				</div>
-				{{form.password2}}
+				{{form.plan}}
 			</div>
         </div>
+
+        <!--<div class="form-group">
+          <select id="select" class="form-control" aria-placeholder="Choose Category" required>
+            <option disabled selected>Choose 1st preference for Category</option>
+            <option>Weightlifting</option>
+            <option>Calisthenics</option>
+            <option>Aerobics</option>
+            <option>Anaerobic</option>
+            <option>Cross Fitness</option>
+            <option>Mobility</option>
+			<option>Yoga</option>
+          </select>
+            </div>
+			<div class="form-group">
+				<select id="select" class="form-control" aria-placeholder="Choose Category">
+				  <option disabled selected>Choose 2nd preference for Category</option>
+				  <option>Weightlifting</option>
+				  <option>Calisthenics</option>
+				  <option>Aerobics</option>
+				  <option>Anaerobic</option>
+				  <option>Cross Fitness</option>
+				  <option>Mobility</option>
+				  <option>Yoga</option>
+				</select>
+				  </div>-->
         <br>
-        <div class="form-group text-center">
-          <label class="form-check-label"><input type="checkbox" required="required" id="myCheckbox"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+		<div class="form-group text-center">
+          <label class="form-check-label"><input type="checkbox" required="required" id="myCheckbox"> I hereby declare that the details furnished above are up to date and true to the best of my knowledge. If found incorrect/misleading, the authority has the right to cancel my membership any time.</label>
         </div>
 		<div class="form-group text-center">
-            <button type="submit" class="btn btn-primary btn-lg" id="myButton" disabled>Register</button>
-            <script type="text/javascript">
-              $('#myCheckbox').click(function() {
-                $('#myButton').attr("disabled", !this.checked);
-            });
-            </script>
-        </div><br>
-
+            <button type="submit" class="btn btn-primary btn-lg" id="myButton" disabled>Save and Proceed</button>
+        </div>
+		<script type="text/javascript">
+			$('#myCheckbox').click(function() {
+			  $('#myButton').attr("disabled", !this.checked);
+		  });
+		</script>
 		{{form.errors}}
-
-        <div class="text-center" style="margin-bottom:10px ;font-family:'Montserrat', sans-serif;">Already have an account? <a href="{% url 'login' %}" style="text-decoration:none;">Login here</a>
     </form>
     <!--/-Attributes-->
 </body>
@@ -147,6 +254,8 @@ body {
 	background: #19aa8d;
 	font-family: 'Roboto', sans-serif;
   background-attachment: fixed;
+  height: 500px;
+  background-repeat: no-repeat;
   background-size: cover;
   background-image: url(https://images.unsplash.com/photo-1591940765155-0604537032a5?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTEyfHx1bmlzZXglMjBmaXRuZXNzJTIwZ3ltbWluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
 }
@@ -168,12 +277,13 @@ body {
 .signup-form form {
 	color: white;
 	border-radius: 3px;
-	margin-top: 90px;
+	margin-top: 80px;
 	background: rgb(245, 100, 47);
 	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 	padding: 50px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 90px;
 }
 .signup-form h2 {
 	color: white;
@@ -319,10 +429,10 @@ body {
 
 	/* Home section */
 
-	.home {
+	body {
 		width: 100%;
-		height: 200vh;
-		background-image: url(https://images.unsplash.com/photo-1598575435251-574ba3ba7ad3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTA2fHx1bmlzZXglMjBmaXRuZXNzJTIwZ3ltbWluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
+		height: 130vh;
+		background-image: url(https://images.unsplash.com/photo-1598575435251-574ba3ba7ad3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTA2fHx1bmlzZXglMjBmaXRuZXNzJTIwZ3ltbWluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60) center fixed;
 		background-position: center top;
 		background-size:cover;
 	}
@@ -605,16 +715,17 @@ body {
 </style>
 <script>
 		var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder = 'Username';
-		form_fields[2].placeholder='FirstName..';
-		form_fields[3].placeholder='LastName..';
-		form_fields[4].placeholder='Email..';
-		form_fields[5].placeholder='Password';
-		form_fields[6].placeholder='Confirm Password';
+		form_fields[1].placeholder='FirstName..';
+		form_fields[2].placeholder='LastName..';
+		form_fields[3].placeholder='DOB';
+		form_fields[4].placeholder='Phone No';
+		form_fields[5].placeholder='Alt Phone No';
+		form_fields[6].placeholder='Address';
 
 
 		for (var field in form_fields){
 			form_fields[field].className += ' form-control'
 		}
 	</script>
-
+</body>
+</html>

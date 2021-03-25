@@ -19,7 +19,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
 from .models import *
-from .forms import CreateUserForm, MemberCreateForm
+from .forms import CreateUserForm, MemberCreateForm, MyProfileForm
 from .decorators import unauthenticated_user
 
 @login_required(login_url='login')
@@ -37,6 +37,7 @@ def createmember(request):
         'form': form
     }
     return render(request, 'accounts/member_register.html', context)
+
 
 
 @login_required(login_url='login')
@@ -155,3 +156,17 @@ def about(request):
 def myprofile(request):
     datas = Member.objects.filter(user =request.user)
     return render(request, 'accounts/my_profile.html', {'data': datas})
+
+@login_required(login_url='login')
+def accountsettings(request):
+    member = request.user.member
+    form = MyProfileForm(instance=member)
+
+    if request.method == 'POST':
+        form = MyProfileForm(request.POST, request.FILES, instance=member)
+        if form.is_valid():
+            form.save()
+            return redirect('MyProfile')
+
+    context = {'form': form}
+    return render(request, 'accounts/my profile_update.html', context)

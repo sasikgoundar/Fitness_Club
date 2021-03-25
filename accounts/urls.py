@@ -16,6 +16,7 @@ urlpatterns = [
     path('about/', views.about, name='Aboutus'),
     path('myprofile/', views.myprofile, name= 'MyProfile'),
     path('membership/', views.createmember, name= 'Membership'),
+    path('myprofile_update/', views.accountsettings, name= 'ProfileUpdate'),
 
     path('activate/<uidb64>/<token>/',views.activate, name='activate'),
 

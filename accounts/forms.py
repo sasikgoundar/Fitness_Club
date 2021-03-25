@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Member
+from .models import *
 from django import forms
 from django.forms.widgets import DateInput
 
@@ -18,3 +18,11 @@ class MemberCreateForm(forms.ModelForm):
         widgets ={
             'dob': DateInput(attrs={'type': 'date'})
         }
+class MyProfileForm(forms.ModelForm):
+    class Meta:
+        model = Member
+        fields = ('first_name', 'last_name', 'dob', 'phone_no', 'alt_phone_no', 'gender', 'address', 'fitness', 'plan')
+        widgets = {
+            'dob': DateInput(attrs={'type': 'date'})
+        }
+        exclude = ['user']
