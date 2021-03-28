@@ -1107,6 +1107,31 @@ $('.navTrigger').click(function () {
 });
 </script>
 
+<br><br><br><br><br>
+<section>
+  <div class="section-title">
+    <h3>Our <span style="color: #0d58ba;">Location</span> </h3>
+  </div><br>
+  <div style="text-align: center;">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.0760826298!2d72.89740662300756!3d19.07354530406199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c627a20bcaa9%3A0xb2fd3bcfeac0052a!2sK.%20J.%20Somaiya%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1616743407406!5m2!1sen!2sin"
+  width="500" height="350" style="border:0;" frameborder="0" allowfullscreen loading="lazy" style="border: 0;">
+</iframe>
+</div>
+</section>
+
+<style>
+  .section-title {
+    text-align: center;
+    padding-bottom: 30px;
+          }
+.section-title h3{
+            margin: 0 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+          }
+          </style>
+
+
 <section>
         <footer class="footer-distributed">
             <div class="footer-left">
@@ -1122,14 +1147,14 @@ $('.navTrigger').click(function () {
 					·
 					<a href="#">Latest News</a>
 					·
-					<a href="#">Faq</a>
+					<a href="{% url 'Faq' %}">Faq</a>
 					·
 					<a href="#">Careers</a>
 				</p>
 
 				<p class="footer-company-name">The BodyWorks &copy; 2021</p>
                 <p class="footer-company-name">All rights reserved</p><br>
-                <a href="#" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none;">Terms of Services</a>&nbsp; &nbsp;<a href="#" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none">Privacy Policy</a>
+                <a href="{% url 'Terms' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none;">Terms of Services</a>&nbsp; &nbsp;<a href="{% url 'PrivacyPolicy' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none">Privacy Policy</a>
 			</div>
 
 			<div class="footer-center">

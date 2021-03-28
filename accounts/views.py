@@ -152,6 +152,15 @@ def homepage(request):
 def about(request):
     return render(request, 'accounts/about.html')
 
+def faq(request):
+    return render(request, 'accounts/faq_fitness.html')
+
+def privacypolicy(request):
+    return render(request, 'accounts/privacy_policy.html')
+
+def terms(request):
+    return render(request, 'accounts/terms.html')
+
 @login_required(login_url='login')
 def myprofile(request):
     datas = Member.objects.filter(user =request.user)

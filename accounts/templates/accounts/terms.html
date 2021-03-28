@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+<title>Terms Of Service</title>
+<link href="#" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!--navbar-->
+<nav class="nav">
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'Homepage' %}">Logo</a>
+        </div>
+        <div id="mainListDiv" class="main_list">
+            <ul class="navlinks ml-auto">
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'login' %}">Sign In</a></li>
+                {% endif %}
+                <li><a href="{% url 'Aboutus' %}"> AboutUs</a></li>
+
+
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'MyProfile' %}">My Settings</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+              <li><a href="#">Hello, {{request.user}}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <span class="navTrigger">
+            <i></i>
+            <i></i>
+            <i></i>
+        </span>
+    </div>
+</nav>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/scripts.js"></script>
+
+<!-- Function used to shrink nav bar removing paddings and adding black background -->
+<script>
+    $(window).scroll(function() {
+        if ($(document).scrollTop() > 50) {
+            $('.nav').addClass('affix');
+            console.log("OK");
+        } else {
+            $('.nav').removeClass('affix');
+        }
+    });
+</script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 62.5%;
+    font-size: 10px;
+    background-color: rgb(241, 241, 241);
+}
+/*-- Inspiration taken from abdo steif -->
+/* --> https://codepen.io/abdosteif/pen/bRoyMb?editors=1100*/
+
+/* Navbar section */
+
+.nav {
+    width: 100%;
+    height: 65px;
+    position: fixed;
+    line-height: 65px;
+    text-align: center;
+    z-index: 10;
+}
+
+.nav div.logo {
+    float: left;
+    width: auto;
+    height: auto;
+    padding-left: 3rem;
+}
+
+.nav div.logo a {
+    text-decoration: none;
+    color: rgb(111, 203, 240);
+    font-size: 2.5rem;
+}
+
+.nav div.logo a:hover {
+    color: #19c8ce;
+}
+
+.nav div.main_list {
+    height: 65px;
+    float: right;
+}
+
+.nav div.main_list ul {
+    width: 100%;
+    height: 65px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav div.main_list ul li {
+    width: auto;
+    height: 65px;
+    padding: 0;
+    padding-right: 3rem;
+}
+
+.nav div.main_list ul li a {
+    text-decoration: none;
+    color: rgb(111, 203, 240);
+    line-height: 65px;
+    font-size: 2.4rem;
+}
+
+.nav div.main_list ul li a:hover {
+    color: #19c8ce;
+}
+
+
+/* Home section */
+
+.home {
+    width: 100%;
+    height: 110vh;
+    background-image: url();
+    background-position: center top;
+	background-size:cover;
+}
+
+.navTrigger {
+    display: none;
+}
+
+.nav {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+
+/* Media qurey section */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .navTrigger {
+        display: block;
+    }
+    .nav div.logo {
+        margin-left: 15px;
+    }
+    .nav div.main_list {
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+    }
+    .nav div.show_list {
+        height: auto;
+        display: none;
+    }
+    .nav div.main_list ul {
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: #111;
+        /*same background color of navbar*/
+        background-position: center top;
+    }
+    .nav div.main_list ul li {
+        width: 100%;
+        text-align: right;
+    }
+    .nav div.main_list ul li a {
+        text-align: center;
+        width: 100%;
+        font-size: 3rem;
+        padding: 20px;
+    }
+    .nav div.media_button {
+        display: block;
+    }
+}
+
+
+/* Animation */
+/* Inspiration taken from Dicson https://codemyui.com/simple-hamburger-menu-x-mark-animation/ */
+
+.navTrigger {
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    margin: auto;
+    position: absolute;
+    right: 30px;
+    top: 0;
+    bottom: 0;
+}
+
+.navTrigger i {
+    background-color: #fff;
+    border-radius: 2px;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+}
+
+.navTrigger i:nth-child(1) {
+    -webkit-animation: outT 0.8s backwards;
+    animation: outT 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger i:nth-child(2) {
+    margin: 5px 0;
+    -webkit-animation: outM 0.8s backwards;
+    animation: outM 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger i:nth-child(3) {
+    -webkit-animation: outBtm 0.8s backwards;
+    animation: outBtm 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger.active i:nth-child(1) {
+    -webkit-animation: inT 0.8s forwards;
+    animation: inT 0.8s forwards;
+}
+
+.navTrigger.active i:nth-child(2) {
+    -webkit-animation: inM 0.8s forwards;
+    animation: inM 0.8s forwards;
+}
+
+.navTrigger.active i:nth-child(3) {
+    -webkit-animation: inBtm 0.8s forwards;
+    animation: inBtm 0.8s forwards;
+}
+
+@-webkit-keyframes inM {
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+@keyframes inM {
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes outM {
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+@keyframes outM {
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes inT {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@keyframes inT {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes outT {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@keyframes outT {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes inBtm {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@keyframes inBtm {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes outBtm {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@keyframes outBtm {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+.affix {
+    padding: 0;
+    background-color: #111;
+}
+
+.myH2 {
+	text-align:center;
+	font-size: 4rem;
+}
+.myP {
+	text-align: justify;
+	padding-left:15%;
+	padding-right:15%;
+	font-size: 20px;
+}
+@media all and (max-width:700px){
+	.myP {
+		padding:2%;
+	}
+}
+</style>
+
+<script>
+    $('.navTrigger').click(function () {
+        $(this).toggleClass('active');
+        console.log("Clicked menu");
+        $("#mainListDiv").toggleClass("show_list");
+        $("#mainListDiv").fadeIn();
+    
+    });
+</script>
+<br><br>
+
+<section id="faq" class="faq section-bg">
+    <div class="container aos-init aos-animate" data-aos="fade-up">
+<br>
+      <div class="section-title">
+        <h3>Terms Of <span style="color: #0d58ba;">Service</span></h3>
+      </div><br>
+
+      <div class="row justify-content-center">
+        <div class="col-xl-10">
+          <ul class="faq-list">
+
+            <li>
+              <div data-bs-toggle="collapse" class="question" href="#faq1" aria-expanded="true">Rules & Regulations
+                <i class="fa fa-lightbulb-on"></i></div>
+              <div id="faq1" class="collapse show" data-bs-parent=".faq-list"><br>
+                <p>
+                    This gym shall have the unqualified right to make such rules, regulations and restrictions in the use of the institute property as it may deem necessary. All signs posted in the institute premises shall be considered as a part of the rules and regulations.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div data-bs-toggle="collapse" class="question" aria-expanded="true">Facilities provided at the Gym <i class="fa fa-lightbulb-on"></i></div>
+              <div id="faq2" class="collapse show" data-bs-parent=".faq-list"><br>
+                <p>
+                    We provide international collection of books for reading, reference making in projects & to know more about current fitness expertise.
+                    –          The books are for use only on the Gym premises. Taking these books away from the library, copying any material in any format or any other method of duplication of data is strictly prohibited.
+                    
+                    We also have facilities of internet browsing to upgrade & support your knowledge with new recent articles & information.
+                    –          Do not store data on the computer. No information/ material to be take out of the Gym premises.
+                    
+                    Practical use of the Gym equipment
+                    –          Students can utilize the gym equipments on the floor as a practice to what has been taught in class.
+                    
+                    –          The Gym can be used between the non peak hours of the gym (i.e.12 pm to 5 pm), each session not exceeding 1 hour.
+                    
+                    –          Use of cardio equipment is prohibited.
+                    
+                    –          There won’t be any assistance from floor staff in exercise card making or spotting.
+                    
+                    –          In case of assistance required contact the Gym staff.
+                    Etiquette in the changing rooms
+–          Changing rooms can be used for changing clothes.
+
+–          Other facilities like locker, steam, showers and towel are not to be used by the students.
+
+–          Eating is not allowed in the gym premises, the staff pantry can be used in case of emergency on acquiring permission.
+
+Waiver: I accept responsibility for my use of any and all apparatus, appliances, facility, privileges or service what so ever, owned and operated at this club at my own risk, and shall hold this club, its shareholders, directors, officers, employers, representatives and agents harmless from any and all loss, claim, injury, damage, or liability sustained or incurred by me resulting therefrom.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div data-bs-toggle="collapse" class="question" aria-expanded="true">Agreement <i class="fa fa-lightbulb"></i></div>
+              <div id="faq3" class="collapse show" data-bs-parent=".faq-list"><br>
+                <p>
+                    Fees once paid will not be refunded by the institute in any event whatsoever.
+
+                    The institute reserves the right to expel students in the event that the conduct of the student is detrimental to the interest of the institute and the other students. The decision of the institute in this regard shall be final and binding on the concerned student. In event of expulsion, the student will not be entitled to claim refund of any amount paid by him to the institute and all amounts shall stand forfeited to the institute.
+                    
+                    Gym Membership Payments made availing any Offer will not be refunded or Transferred under any circumstances.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div data-bs-toggle="collapse" class="question" aria-expanded="true">Access And Use <i class="fa fa-lightbulb"></i></div>
+              <div id="faq4" class="collapse show" data-bs-parent=".faq-list"><br>
+                <p>
+                    All materials contained in this Site and contents hereof are protected by trademark and copyright laws and must only be used for personal, non-commercial purposes. This means that you may only view or download material from this Site for your own use and you must keep all copyright and other proprietary notices attached to the downloaded material.
+                    The reproduction, duplication, distribution (including by way of email, facsimile or other electronic means), publication, modification, copying or transmission of material from this Site is STRICTLY PROHIBITED unless you have obtained the prior written consent of the gym or unless it is expressly permitted by this Site. The material covered by this prohibition includes, without limitation, any text, graphics, logos, photographs, audio or video material or stills from audiovisual material available on this Site. The use of materials from this Site on any other web site or networked computer environment is similarly prohibited. Requests for permission to reproduce or distribute materials found on this Site can be made by contacting the gym in writing at Business & Legal Affairs gym at F2 Fun & Fitness (I) Pvt Ltd., “ Suren Road, Off. Western Express Highway, Andheri (East), Mumbai- 400093, Maharashtra, INDIA,email at webmaster@abcgym.in
+                    You are also strictly prohibited from creating works or materials that derive from or are based on the materials contained in this Site including, without limitation, fonts, icons, link buttons, wallpaper, desktop themes, on-line postcards and greeting cards and unlicensed merchandise. This prohibition applies regardless of whether the derivative materials are sold, bartered or given away.
+                    You agree that any Message whatsoever submitted by you onto the site becomes the property of GOLD’S GYM INDIA and may be used, copied, sublicensed, adapted, transmitted, distributed, publicly performed, published, displayed or deleted as gym sees fit.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div data-bs-toggle="collapse" class="question" aria-expanded="true">Unsolicited Submissions <i class="fa fa-lightbulb-on"></i></div>
+              <div id="faq5" class="collapse show" data-bs-parent=".faq-list"><br>
+                <p>
+                    If unsolicited submissions are sent to the gym via this Site, these submissions become the property of the gym and may be used, copied, sublicensed, adapted, transmitted, distributed, publicly performed, published, displayed or deleted as the gym sees fit. You agree that you are not entitled to any compensation, credit or notice whatsoever and that by sending an unsolicited submission you waive the right to make any claim against gym, its parents or affiliates relating to unsolicited submissions, including, without limitation, unfair competition, breach of implied contract or breach of confidentiality.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div data-bs-toggle="collapse" class="question" aria-expanded="true">Waiver & Release of Liability <i class="fa fa-lightbulb-on"></i></div>
+              <div id="faq6" class="collapse show" data-bs-parent=".faq-list"><br>
+                <p>
+                    This agreement contains a waiver and release of liability and indemnity agreement. Do not agree to  this agreement before you read it. By agreeing (ticking the I agree check box) below, you acknowledge receipt of a fully completed copy of this agreement executed by you and the institute and a copy of the rules and regulations. You agree to be bound by the terms and conditions contained herein.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+      .faq {
+    padding: 60px 0;
+}
+.section-title {
+    text-align: center;
+    padding-bottom: 30px;
+}
+.section-title h3 {
+    margin: 15px 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+.justify-content-center {
+    justify-content: center!important;
+}
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x)/ -2);
+    margin-left: calc(var(--bs-gutter-x)/ -2);
+}
+.faq .faq-list {
+    padding: 0;
+    list-style: none;
+}
+ul{
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.faq .faq-list li {
+    border-bottom: 1px solid #d4e5fc;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+.faq .faq-list .question {
+    display: block;
+    position: relative;
+    font-family: #106eea;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+    padding-left: 25px;
+    cursor: pointer;
+    color: #0d58ba;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+.faq .faq-list i {
+    font-size: 16px;
+    position: absolute;
+    left: 0;
+}
+.faq .faq-list p {
+    margin-bottom: 0;
+    padding: 10px 0 0 25px;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+}
+  </style>
+
+<section>
+        <footer class="footer-distributed">
+            <div class="footer-left">
+
+				<h3>The<span> BodyWorks</span></h3>
+
+				<p class="footer-links">
+					<a href="#">Home</a>
+					·
+					<a href="#">Blog</a>
+					·
+					<a href="#">Pricing</a>
+					·
+					<a href="#">Latest News</a>
+					·
+					<a href="{% url 'Faq' %}">Faq</a>
+					·
+					<a href="#">Careers</a>
+				</p>
+
+				<p class="footer-company-name">The BodyWorks &copy; 2021</p>
+                <p class="footer-company-name">All rights reserved</p><br>
+                <a href="{% url 'Terms' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none;">Terms of Services</a>&nbsp; &nbsp;<a href="{% url 'PrivacyPolicy' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none">Privacy Policy</a>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>21 Revolution Street</span> Paris, France</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+1 555 123456</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="/cdn-cgi/l/email-protection#ff8c8a8f8f908d8bbf9c90928f9e9186d19c9092"><span class="__cf_email__" data-cfemail="ea999f9a9a85989eaa8985879a8b8493c4898587">thebodyworkks@gmail.com</span></a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+                <p class="footer-company-about">
+					<span>About The BodyWorks</span>
+					Some example text to cover up the content of the para as of now. Some example text to cover up the content
+				</p>
+
+				<div class="footer-icons">
+
+					<a href="#"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+					<a href="#"><i class="fa fa-linkedin"></i></a>
+					<a href="#"><i class="fa fa-youtube"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+
+				</div>
+
+			</div>
+        </footer>
+    </section>
+<style>
+    .footer-distributed {
+background-color: #292c2f;
+box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+box-sizing: border-box;
+width: 100%;
+text-align: left;
+font: bold 16px sans-serif;
+padding: 55px 50px;
+margin-top: 120px;
+    }
+    @media (max-height: 800px){
+ footer { 
+position: static;
+}
+    }
+.footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+width: 40%;
+display: inline-block;
+vertical-align: top;
+}
+.footer-distributed h3 {
+color: #ffffff;
+font: normal 36px 'Montserrat', cursive;
+margin: 0;
+}
+.footer-distributed .footer-links {
+color: #ffffff;
+margin: 20px 0 12px;
+padding: 0;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-links a {
+display: inline-block;
+line-height: 1.8;
+text-decoration: none;
+color: inherit;
+}
+.footer-distributed .footer-company-name {
+color: #8f9296;
+font-size: 14px;
+font-weight: normal;
+margin: 0;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-center {
+width: 35%;
+}
+.footer-distributed .footer-center i {
+background-color: #33383b;
+color: #ffffff;
+font-size: 25px;
+width: 38px;
+height: 38px;
+border-radius: 50%;
+text-align: center;
+line-height: 42px;
+margin: 10px 15px;
+vertical-align: middle;
+}
+.footer-distributed .footer-center p {
+display: inline-block;
+color: #ffffff;
+vertical-align: middle;
+margin: 0;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-center p span {
+display: block;
+font-weight: normal;
+font-size: 14px;
+line-height: 2;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-right {
+width: 20%;
+}
+.footer-distributed .footer-company-about {
+line-height: 20px;
+color: #92999f;
+font-size: 13px;
+font-weight: normal;
+margin: 0;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-company-about span {
+display: block;
+color: #ffffff;
+font-size: 14px;
+font-weight: bold;
+margin-bottom: 20px;
+font-family: 'Montserrat',sans-serif;
+}
+.footer-distributed .footer-company-about {
+line-height: 20px;
+}
+.footer-distributed .footer-icons {
+margin-top: 25px;
+}
+.footer-distributed .footer-icons a {
+display: inline-block;
+width: 35px;
+height: 35px;
+cursor: pointer;
+background-color: #33383b;
+border-radius: 2px;
+font-size: 20px;
+color: #ffffff;
+text-align: center;
+line-height: 35px;
+margin-right: 3px;
+margin-bottom: 5px;
+font-family: 'Montserrat',sans-serif;
+}
+</style>
+
+<div class="customer-service" style="bottom: 40px;">
+    <div class="item" id="go-top">
+        <i class="fa fa-chevron-circle-up fa-4x"></i>
+    </div>
+</div>
+<style>
+    .customer-service {
+    position: fixed;
+    z-index: 10;
+    right: 40px;
+}
+.customer-service .item {
+    cursor: pointer;
+    margin-top: 20px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+}
+.chevron-circle-up {
+    font-style: normal;
+    font-size: 16px;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+}
+.customer-service .item .chevron-circle-up {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: #fcf8f9;
+    transition: 0.3s;
+}
+.chevron-circle-up{
+    content: "\e693";
+}
+</style>
+<script>
+    /**
+     * 客服挂件
+     */
+    var $goTop = $('#go-top');
+    var $customService = $('.customer-service');
+    var customerMessage = $('#customer-message .message');
+  
+    $(window).scroll(function () {
+      var winHeight = $(window).height();
+      var scrollHeight = $(document).scrollTop();
+      if (scrollHeight > winHeight) {
+        $goTop.show();
+        $customService.css('bottom', '40px');
+      } else {
+        $goTop.hide();
+        $customService.css('bottom', '60px');
+      }
+    });
+  
+    $goTop.click(function () {
+      $('html ,body').animate({scrollTop: 0}, 300);
+    });
+  
+    if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+      $('.customer-service').hide();
+    } else {
+      $('.customer-service').show();
+    }
+  </script>

@@ -58,10 +58,13 @@ class Member(models.Model):
     plan = models.ForeignKey(Plan, null=True, on_delete=models.SET_NULL)
     join_date = models.DateTimeField(auto_now_add=True, null=True)
 
-
-
     def __str__(self):
-        return self.user
+        if self.user == None:
+            return "-"
+        return str(self.user)
+
+    #def __str__(self):
+        #return self.user
 
 """@receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

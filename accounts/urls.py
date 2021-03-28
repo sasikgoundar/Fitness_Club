@@ -17,6 +17,9 @@ urlpatterns = [
     path('myprofile/', views.myprofile, name= 'MyProfile'),
     path('membership/', views.createmember, name= 'Membership'),
     path('myprofile_update/', views.accountsettings, name= 'ProfileUpdate'),
+    path('faq/', views.faq, name= 'Faq'),
+    path('privacy_policy/', views.privacypolicy, name= 'PrivacyPolicy'),
+    path('terms/', views.terms, name= 'Terms'),
 
     path('activate/<uidb64>/<token>/',views.activate, name='activate'),
 
