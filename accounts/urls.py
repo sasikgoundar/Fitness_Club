@@ -20,6 +20,7 @@ urlpatterns = [
     path('faq/', views.faq, name= 'Faq'),
     path('privacy_policy/', views.privacypolicy, name= 'PrivacyPolicy'),
     path('terms/', views.terms, name= 'Terms'),
+    path('attendance/', views.attendance, name= 'Attendance'),
 
     path('activate/<uidb64>/<token>/',views.activate, name='activate'),
 

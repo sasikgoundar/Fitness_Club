@@ -15,10 +15,12 @@ class MemberCreateForm(forms.ModelForm):
     class Meta:
         model = Member
 
-        fields = ('first_name', 'last_name', 'email_id', 'dob', 'phone_no', 'alt_phone_no', 'gender', 'address', 'fitness', 'plan')
+        fields = ('first_name', 'last_name', 'email_id', 'dob', 'phone_no', 'alt_phone_no', 'gender', 'address', 'fitness', 'plan', 'trainer')
         widgets ={
             'dob': DateInput(attrs={'type': 'date'}),
-            'fitness': forms.CheckboxSelectMultiple(attrs={'required': True, 'style':'width:15px;height:15px;'})
+            'fitness': forms.RadioSelect(attrs={'required': True, 'style':'width:15px;height:15px;'}),
+            #'trainer': forms.RadioSelect(attrs={'required': True, 'style': 'width:15px;height:15px;'}),
+            #'plan': forms.RadioSelect(attrs={'required': True, 'style': 'width:15px;height:15px;'})
         }
 class MyProfileForm(forms.ModelForm):
     class Meta:

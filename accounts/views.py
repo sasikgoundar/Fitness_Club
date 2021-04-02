@@ -5,10 +5,11 @@ from django.db import transaction
 from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth.models import Group
 from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
+
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
@@ -20,7 +21,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
 from .models import *
 from .forms import CreateUserForm, MemberCreateForm, MyProfileForm
-from .decorators import unauthenticated_user
+from .decorators import unauthenticated_user, allowed_users
+
 
 @login_required(login_url='login')
 
@@ -77,6 +79,8 @@ def registerPage(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.is_active = False
+            group = Group.objects.get(name= 'member')
+            user.groups.add(group)
             user.save()
             current_site = get_current_site(request)
             mail_subject = 'Activate your account.'
@@ -147,7 +151,10 @@ def homepage(request):
     total_trainers = trainers.count()
     return render(request, 'accounts/fitness_homepage.html', {'members': members, 'trainers':trainers, 'total_members': total_members, 'total_trainers':total_trainers})
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Trainer'])
+def attendance(request):
+    return render(request, 'accounts/attendance.html')
 
 def about(request):
     return render(request, 'accounts/about.html')
