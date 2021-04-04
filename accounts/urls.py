@@ -3,6 +3,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 from . import views
+from .views import LandingPageView
 
 urlpatterns = [
     path('', views.homepage,  name="Homepage"),
@@ -21,6 +22,11 @@ urlpatterns = [
     path('privacy_policy/', views.privacypolicy, name= 'PrivacyPolicy'),
     path('terms/', views.terms, name= 'Terms'),
     path('attendance/', views.attendance, name= 'Attendance'),
+    path('land/', LandingPageView.as_view(), name='Landing'),
+    path('config/', views.stripe_config),
+    path('create-checkout-session/', views.create_checkout_session),
+    path('success/', views.SuccessView.as_view()),
+    path('cancelled/', views.CancelledView.as_view()),
 
     path('activate/<uidb64>/<token>/',views.activate, name='activate'),
 

@@ -8,6 +8,7 @@ from django import forms
 
 class Fitness(models.Model):
     fitness_type = models.CharField(max_length=50, null=True)
+    price = models.IntegerField(default=0)
     fitness_desc = models.CharField(max_length=500, null=True, blank=True)
 
     def __str__(self):
