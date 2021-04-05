@@ -53,6 +53,7 @@ def member(request):
     total_members = members.count()
     trainers = Trainer.objects.all()
     total_trainers = trainers.count()
+
     return render(request, 'accounts/member.html',
                   {'members': members, 'trainers': trainers, 'total_members': total_members,
                    'total_trainers': total_trainers})
@@ -168,9 +169,11 @@ def homepage(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Trainer'])
-def attendance(request):
-    return render(request, 'accounts/attendance.html')
+#@allowed_users(allowed_roles=['Trainer'])
+def diet_plan(request):
+    datas = Member.objects.filter(user=request.user)
+    return render(request, 'accounts/diet_weightlifting.html',{'data':datas})
+
 
 
 def about(request):

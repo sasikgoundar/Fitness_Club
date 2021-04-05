@@ -33,9 +33,7 @@
                 <li><a href="{% url 'Aboutus' %}">About</a></li>
 
                 {% if user.is_authenticated %}
-                    {% if user.is_staff %}
-                        <li><a href="{%url 'Attendance'%}">Attendance</a> </li>
-                    {% endif %}
+                <li><a href="{% url 'Plan' %}">Diet Plan</a> </li>
                 <li><a href="{% url 'MyProfile' %}">My Settings</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
               <li><a href="#">Hello, {{request.user}}</a></li>
