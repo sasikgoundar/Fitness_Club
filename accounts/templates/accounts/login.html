@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -82,7 +81,9 @@
 				</div>
 				<input type="password" class="form-control" name="password" placeholder="Password" required="required">
 			</div>
-        </div>
+        </div><br>
+			
+
         <br>
 
 		{% for message in messages %}
@@ -93,11 +94,11 @@
         <div class="form-group text-center">
             Don't have an account? <a href="{% url 'register' %}" style="text-decoration: none;">Sign Up</a></label>
          </div>
-		<div class="form-group text-center">
-            <a href="{% url 'reset_password' %}" style="text-decoration: none;">Forgot Password?</a></label>
-         </div>
          <div class="form-group text-center">
              <button type="submit" class="btn btn-primary btn-lg">Login</button>
+         </div>
+		 <div class="form-group text-center">
+            <a href="{% url 'reset_password' %}" style="text-decoration: none;">Forgot Password?</a></label>
          </div>
          <!--<div class="text-center" style="font-family: 'Montserrat', 'sans-serif';"><a href="#" style="text-decoration: none;">Forgot Password?</a></div>-->
      </form>
@@ -106,13 +107,13 @@
 
 <style>
 body {
-	color: red;
 	background: #19aa8d;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Montserrat', sans-serif;
   background-attachment: fixed;
   background-size: cover;
-  background-image: url(https://images.unsplash.com/photo-1591940765155-0604537032a5?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTEyfHx1bmlzZXglMjBmaXRuZXNzJTIwZ3ltbWluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
-}
+  background-image: url(https://images.unsplash.com/photo-1590239926044-4131f5d0654d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fGd5bSUyMGVxdWlwbWVudHxlbnwwfDB8MHxibGFjaw%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
+  background-position: center;
+  }
 .form-control {
 	font-size: 15px;
 	font-family: 'Montserrat', sans-serif;
@@ -239,12 +240,12 @@ body {
 
 		.nav div.logo a {
 			text-decoration: none;
-			color: #fff;
+			color: rgb(111, 203, 240);
 			font-size: 1.6rem;
 		}
 
 		.nav div.logo a:hover {
-			color: #14c4ca;
+			color: #19c8ce;
 		}
 
 		.nav div.main_list {
@@ -270,25 +271,17 @@ body {
 
 		.nav div.main_list ul li a {
 			text-decoration: none;
-			color: #fff;
+			color: rgb(111, 203, 240);
 			line-height: 65px;
 			font-size: 1.6rem;
 		}
 
 		.nav div.main_list ul li a:hover {
-			color: #14c4ca;
+			color: #19c8ce;
 		}
 
 
 		/* Home section */
-
-		.home {
-			width: 100%;
-			height: 200vh;
-			background-image: url(https://images.unsplash.com/photo-1598575435251-574ba3ba7ad3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTA2fHx1bmlzZXglMjBmaXRuZXNzJTIwZ3ltbWluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
-			background-position: center top;
-			background-size:cover;
-		}
 
 		.navTrigger {
 			display: none;

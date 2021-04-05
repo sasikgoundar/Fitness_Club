@@ -4,13 +4,14 @@ from django.db import transaction
 import stripe
 from django.views import View
 from django.contrib.auth.forms import UserCreationForm
-
+from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.views.generic import TemplateView
-
+from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
@@ -36,7 +37,7 @@ def createmember(request):
         if form.is_valid():
             form.instance.user = request.user
             form.save()
-            context ={'form': form}
+            context = {'form': form}
             return redirect('Landing')
 
     else:
@@ -169,11 +170,10 @@ def homepage(request):
 
 
 @login_required(login_url='login')
-#@allowed_users(allowed_roles=['Trainer'])
+# @allowed_users(allowed_roles=['Trainer'])
 def diet_plan(request):
     datas = Member.objects.filter(user=request.user)
-    return render(request, 'accounts/diet_weightlifting.html',{'data':datas})
-
+    return render(request, 'accounts/diet_weightlifting.html', {'data': datas})
 
 
 def about(request):
@@ -212,10 +212,12 @@ def accountsettings(request):
     context = {'form': form}
     return render(request, 'accounts/my profile_update.html', context)
 
-from django.conf import settings # new
-from django.http.response import JsonResponse # new
-from django.views.decorators.csrf import csrf_exempt # new
+
+from django.conf import settings  # new
+from django.http.response import JsonResponse  # new
+from django.views.decorators.csrf import csrf_exempt  # new
 from django.views.generic.base import TemplateView
+
 
 class LandingPageView(TemplateView):
     template_name = 'accounts/landing.html'
@@ -228,6 +230,7 @@ class SuccessView(TemplateView):
 class CancelledView(TemplateView):
     template_name = 'accounts/cancelled.html'
 
+
 @csrf_exempt
 def stripe_config(request):
     if request.method == 'GET':
@@ -236,37 +239,143 @@ def stripe_config(request):
 
 
 @csrf_exempt
+@login_required(login_url='login')
 def create_checkout_session(request):
-    if request.method == 'GET':
-        domain_url = 'http://localhost:8000/'
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        try:
-            # Create new Checkout Session for the order
-            # Other optional params include:
-            # [billing_address_collection] - to display billing address details on the page
-            # [customer] - if you have an existing Stripe Customer ID
-            # [payment_intent_data] - capture the payment later
-            # [customer_email] - prefill the email input in the form
-            # For full details see https://stripe.com/docs/api/checkout/sessions/create
+    if request.user.member.plan.name == '6 Week Weight Loss':
+        if request.method == 'GET':
+            domain_url = 'http://localhost:8000/'
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            try:
+                # Create new Checkout Session for the order
+                # Other optional params include:
+                # [billing_address_collection] - to display billing address details on the page
+                # [customer] - if you have an existing Stripe Customer ID
+                # [payment_intent_data] - capture the payment later
+                # [customer_email] - prefill the email input in the form
+                # For full details see https://stripe.com/docs/api/checkout/sessions/create
 
-            # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-            checkout_session = stripe.checkout.Session.create(
-                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=domain_url + 'cancelled/',
-                payment_method_types=['card'],
-                mode='payment',
-                line_items=[
-                    {
-                        'name': 'Six week Weight loss',
-                        'quantity': 1,
-                        'currency': 'inr',
-                        'amount': '100000',
-                    },
-                ]
-            )
-            return JsonResponse({'sessionId': checkout_session['id']})
-        except Exception as e:
-            return JsonResponse({'error': str(e)})
+                # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+                checkout_session = stripe.checkout.Session.create(
+                    success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                    cancel_url=domain_url + 'cancelled/',
+                    payment_method_types=['card'],
+                    mode='payment',
+                    line_items=[
+                        {
+                            'name': 'Six week Weight loss',
+                            'quantity': 1,
+                            'currency': 'inr',
+                            'amount': '100000',
+                        },
+                    ]
+                )
+                return JsonResponse({'sessionId': checkout_session['id']})
+            except Exception as e:
+                return JsonResponse({'error': str(e)})
 
+    if request.user.member.plan.name == 'Full Service':
+        if request.method == 'GET':
+            domain_url = 'http://localhost:8000/'
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            try:
+                # Create new Checkout Session for the order
+                # Other optional params include:
+                # [billing_address_collection] - to display billing address details on the page
+                # [customer] - if you have an existing Stripe Customer ID
+                # [payment_intent_data] - capture the payment later
+                # [customer_email] - prefill the email input in the form
+                # For full details see https://stripe.com/docs/api/checkout/sessions/create
 
+                # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+                checkout_session = stripe.checkout.Session.create(
+                    success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                    cancel_url=domain_url + 'cancelled/',
+                    payment_method_types=['card'],
+                    mode='payment',
+                    line_items=[
+                        {
+                            'name': 'Full Service',
+                            'quantity': 1,
+                            'currency': 'inr',
+                            'amount': '200000',
+                        },
+                    ]
+                )
+                return JsonResponse({'sessionId': checkout_session['id']})
+            except Exception as e:
+                return JsonResponse({'error': str(e)})
 
+    if request.user.member.plan.name == 'Monthly Pay':
+        if request.method == 'GET':
+            domain_url = 'http://localhost:8000/'
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            try:
+                # Create new Checkout Session for the order
+                # Other optional params include:
+                # [billing_address_collection] - to display billing address details on the page
+                # [customer] - if you have an existing Stripe Customer ID
+                # [payment_intent_data] - capture the payment later
+                # [customer_email] - prefill the email input in the form
+                # For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+                # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+                checkout_session = stripe.checkout.Session.create(
+                    success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                    cancel_url=domain_url + 'cancelled/',
+                    payment_method_types=['card'],
+                    mode='payment',
+                    line_items=[
+                        {
+                            'name': 'Monthly Pay',
+                            'quantity': 1,
+                            'currency': 'inr',
+                            'amount': '90000',
+                        },
+                    ]
+                )
+                return JsonResponse({'sessionId': checkout_session['id']})
+            except Exception as e:
+                return JsonResponse({'error': str(e)})
+
+    if request.user.member.plan.name == 'Equipment Only':
+        if request.method == 'GET':
+            domain_url = 'http://localhost:8000/'
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            try:
+                # Create new Checkout Session for the order
+                # Other optional params include:
+                # [billing_address_collection] - to display billing address details on the page
+                # [customer] - if you have an existing Stripe Customer ID
+                # [payment_intent_data] - capture the payment later
+                # [customer_email] - prefill the email input in the form
+                # For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+                # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+                checkout_session = stripe.checkout.Session.create(
+                    success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                    cancel_url=domain_url + 'cancelled/',
+                    payment_method_types=['card'],
+                    mode='payment',
+                    line_items=[
+                        {
+                            'name': 'Equipment Only',
+                            'quantity': 1,
+                            'currency': 'inr',
+                            'amount': '80000',
+                        },
+                    ]
+                )
+                return JsonResponse({'sessionId': checkout_session['id']})
+            except Exception as e:
+                return JsonResponse({'error': str(e)})
+
+def index(request):
+    if request.method == 'POST':
+        message = request.POST['message']
+        send_mail('Contact Form',
+                  message,
+                  settings.EMAIL_HOST_USER,
+                  ['goundarsasi@gmail.com'],
+                  fail_silently=False)
+        return redirect('Afterlogin')
+    return render(request, 'accounts/index.html')

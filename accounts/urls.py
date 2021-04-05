@@ -8,6 +8,7 @@ from .views import LandingPageView
 urlpatterns = [
     path('', views.homepage,  name="Homepage"),
     path('home', views.afterlogin,  name="Afterlogin"),
+    path('index', views.index, name="index"),
     path('register/', views.registerPage, name="register"),
     path('login/', views.loginPage, name="login"),
     path('user/', views.userPage, name="user-page"),
