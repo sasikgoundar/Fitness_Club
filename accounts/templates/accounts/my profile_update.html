@@ -16,11 +16,11 @@
 
 
 	<nav class="nav">
-		<div class="container">
-			<div class="logo">
-				<a href="{% url 'Afterlogin' %}">Logo</a>
-			</div>
-			<div id="mainListDiv" class="main_list">
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'Afterlogin' %}">Logo</a>
+        </div>
+        <div id="mainListDiv" class="main_list">
             <ul class="navlinks ml-auto">
                 {% if not user.is_authenticated %}
                 <li><a href="{% url 'register' %}">Register</a></li>
@@ -32,19 +32,23 @@
                 <li><a href="{% url 'Aboutus' %}">About</a></li>
 
                 {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <li><a href="{%url 'index'%}">Announcement</a> </li>
+                    {% endif %}
+                <li><a href="{% url 'Plan' %}">Diet Plan</a> </li>
                 <li><a href="{% url 'MyProfile' %}">My Settings</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
               <li><a href="#">Hello, {{request.user}}</a></li>
                 {% endif %}
             </ul>
         </div>
-			<span class="navTrigger">
-				<i></i>
-				<i></i>
-				<i></i>
-			</span>
-		</div>
-	</nav>
+        <span class="navTrigger">
+            <i></i>
+            <i></i>
+            <i></i>
+        </span>
+    </div>
+</nav>
 	<script>
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > 50) {

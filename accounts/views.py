@@ -372,7 +372,7 @@ def create_checkout_session(request):
 def index(request):
     if request.method == 'POST':
         message = request.POST['message']
-        send_mail('Contact Form',
+        send_mail('Announcement',
                   message,
                   settings.EMAIL_HOST_USER,
                   ['goundarsasi@gmail.com'],

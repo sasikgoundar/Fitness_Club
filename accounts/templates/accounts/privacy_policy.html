@@ -16,7 +16,7 @@
 <nav class="nav">
     <div class="container">
         <div class="logo">
-            <a href="{% url 'Homepage' %}">Logo</a>
+            <a href="{% url 'Afterlogin' %}">Logo</a>
         </div>
         <div id="mainListDiv" class="main_list">
             <ul class="navlinks ml-auto">
@@ -26,10 +26,14 @@
                 {% if not user.is_authenticated %}
                 <li><a href="{% url 'login' %}">Sign In</a></li>
                 {% endif %}
-                <li><a href="{% url 'Aboutus' %}"> AboutUs</a></li>
 
+                <li><a href="{% url 'Aboutus' %}">About</a></li>
 
                 {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <li><a href="{%url 'index'%}">Announcement</a> </li>
+                    {% endif %}
+                <li><a href="{% url 'Plan' %}">Diet Plan</a> </li>
                 <li><a href="{% url 'MyProfile' %}">My Settings</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
               <li><a href="#">Hello, {{request.user}}</a></li>
@@ -589,7 +593,8 @@ ul{
 
 				<p class="footer-company-name">The BodyWorks &copy; 2021</p>
                 <p class="footer-company-name">All rights reserved</p><br>
-                <a href="% url 'Terms' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none;">Terms of Services</a>&nbsp; &nbsp;<a href="{% url 'PrivacyPolicy' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none">Privacy Policy</a>
+                <a href="{% url 'Terms' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none;">Terms of Services</a>&nbsp;
+                <a href="{% url 'PrivacyPolicy' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none">Privacy Policy</a>
 			</div>
 
 			<div class="footer-center">
