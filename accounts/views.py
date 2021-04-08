@@ -22,7 +22,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
 from .models import *
-from .forms import CreateUserForm, MemberCreateForm, MyProfileForm
+from .forms import CreateUserForm, MemberCreateForm, MyProfileForm, FreeTrialForm, ContactUsForm
 from .decorators import unauthenticated_user, allowed_users
 
 from django.core.mail import EmailMessage
@@ -46,6 +46,25 @@ def createmember(request):
         'form': form
     }
     return render(request, 'accounts/member_register.html', context)
+
+
+def trial(request):
+    form = FreeTrialForm()
+    if request.method == 'POST':
+        form = FreeTrialForm(request.POST)
+        if form.is_valid():
+            form.save()
+            recepient = str(form['email_id'].value())
+            send_mail('Free trial',
+                      'Welcome to our free trial',
+                      settings.EMAIL_HOST_USER,
+                      [recepient],
+                      fail_silently=False)
+            return redirect('Homepage')
+
+    context = {'form': form}
+
+    return render(request, 'accounts/trial_fitness.html', context)
 
 
 @login_required(login_url='login')
@@ -164,9 +183,24 @@ def homepage(request):
     total_members = members.count()
     trainers = Trainer.objects.all()
     total_trainers = trainers.count()
-    return render(request, 'accounts/fitness_homepage.html',
-                  {'members': members, 'trainers': trainers, 'total_members': total_members,
-                   'total_trainers': total_trainers})
+
+    form = ContactUsForm()
+    if request.method == 'POST':
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            recepient = str(form['email_id'].value())
+            send_mail('Contact Us',
+                      'Thank you for your feedback. We will get back to you shortly.',
+                      settings.EMAIL_HOST_USER,
+                      [recepient],
+                      fail_silently=False)
+            return redirect('Homepage')
+
+    context = {'form': form, 'members': members, 'trainers': trainers, 'total_members': total_members,
+                   'total_trainers': total_trainers}
+
+    return render(request, 'accounts/fitness_homepage.html', context)
 
 
 @login_required(login_url='login')

@@ -31,16 +31,11 @@
                 {% endif %}
 
                 <li><a href="{% url 'Aboutus' %}">About</a></li>
-
-                {% if user.is_authenticated %}
-                    {% if user.is_staff %}
-                        <li><a href="{%url 'index'%}">Announcement</a> </li>
-                    {% endif %}
                 <li><a href="{% url 'Plan' %}">Diet Plan</a> </li>
                 <li><a href="{% url 'MyProfile' %}">My Settings</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
               <li><a href="#">Hello, {{request.user}}</a></li>
-                {% endif %}
+
             </ul>
         </div>
         <span class="navTrigger">
@@ -102,7 +97,7 @@ body {
 
 .nav div.logo a {
     text-decoration: none;
-    color: rgb(69, 160, 190);
+    color: rgb(111, 203, 240);
     font-size: 2.5rem;
 }
 
@@ -133,7 +128,7 @@ body {
 
 .nav div.main_list ul li a {
     text-decoration: none;
-    color: rgb(69, 160, 190);
+    color: rgb(111, 203, 240);
     line-height: 65px;
     font-size: 2.4rem;
 }
@@ -446,7 +441,7 @@ $('.navTrigger').click(function () {
           <div class="box">
             <h3>Full-Service</h3>
             <p>(Recommended)</p>
-            <h4><sup>Rs.</sup>16800<span> / year</span></h4>
+            <h4><sup>Rs.</sup>20000<span> / year</span></h4>
             <ul>
               <li>Full access to all the equipments and classes</li>
               <li>One-on-one workout sessions</li>
@@ -454,56 +449,44 @@ $('.navTrigger').click(function () {
               <li>Starts with an initial evaluation session to help you accomplish your goals better</li>
               <li class="na">Cancel Anytime/ No Refund</li>
             </ul>
-            <div class="btn-wrap">
-              <a href="{% url 'Membership' %}" class="btn-buy">Buy Now</a>
-            </div>
           </div>
         </div>
     
         <div class="col-lg-3 col-md-6 mt-4 mt-md-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
           <div class="box featured">
             <h3>Equipment Only Membership</h3>
-            <h4><sup>Rs.</sup>14500<span> / year</span></h4>
+            <h4><sup>Rs.</sup>800<span> / month</span></h4>
             <ul>
               <li>No trainer supervision</li>
               <li>No workout recording</li>
               <li>Anytime use of our strength, cardio and free weight equipments</li>
               <li>Additional 10% off after 2 months of this plan</li>
             </ul>
-            <div class="btn-wrap">
-              <a href="{% url 'Membership' %}" class="btn-buy">Buy Now</a>
-            </div>
           </div>
         </div>
     
         <div class="col-lg-3 col-md-6 mt-4 mt-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
           <div class="box">
             <h3>Monthly Pay-as-you-Go</h3>
-            <h4><sup>Rs.</sup>3000<span> / month</span></h4>
+            <h4><sup>Rs.</sup>900<span> / month</span></h4>
             <ul>
               <li>A plan that offers flexibility without a minimum term contract</li>
               <li>Available for Full Service, Unlimited Classes and Equipment Only membership options</li>
               <li>You can cancel any time before the 25th of the month with no penalty.  </li>
             </ul>
-            <div class="btn-wrap">
-              <a href="{% url 'Membership' %}" class="btn-buy">Buy Now</a>
-            </div>
           </div>
         </div>
     
         <div class="col-lg-3 col-md-6 mt-4 mt-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
             <div class="box">
               <h3>6-Week Weight Loss Program</h3>
-              <h4><sup>Rs.</sup>2500<span> / program</span></h4>
+              <h4><sup>Rs.</sup>1000<span> / program</span></h4>
               <ul>
                 <li>Taking before measurements and testing metabolic rate to determine your ideal calorie intake</li>
                 <li>Personalized eating and exercise handbook for you</li>
                 <li>Personalized review sessions with trainer</li>
                 <li>Live monitoring for best results</li>
               </ul>
-              <div class="btn-wrap">
-                <a href="{% url 'Membership' %}" class="btn-buy">Buy Now</a>
-              </div>
             </div>
           </div>
     
@@ -615,23 +598,35 @@ $('.navTrigger').click(function () {
     }
       </style>
 
-      <section class="border p-4 d-flex justify-content-center mb-4">
-        <div class="card text-center" style="max-width: 100rem;">
-            <div class="card-body">
-              <p class="card-text">
-                  Gym Type- Regular<br>
-                  Gym for Unisex<br>
-                Opening Hours: <i class="fa fa-calendar">   Monday- Saturday - 6:00 AM - 10:00 PM</i> 
-                <br><br>
-                Manager Name: John Doe
-                <br>
-                Manager Contact: 1234678999
-              </p>
-            </div>
-            <div class="card-footer text-muted">If you haven't taken a free trial yet, attend now!!</div><br>
-               <a href="#" class="btn btn-primary" style="margin-left: 300px; margin-right: 300px; font-size: 14px; ">Book Free Trial</a><br>
-          </div>
-      </section>
+<div class="text-center">
+    <a href="{% url 'Membership' %}" class="btn-buy"><button type="submit" class="btn btn-lg">Buy Now</button></a>
+
+</div>
+<style>
+   .btn-lg {        
+	font-size: 20px !important;
+	font-weight: bold;
+	background:  rgb(9, 177, 219);
+    color: white;
+	border: none;
+	min-width: 200px;
+  padding: 14px 40px;
+  border-radius: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-right: auto;
+  margin-left: auto;
+  letter-spacing: 1.5px;
+  font-family: 'Montserrat', sans-serif;
+}
+.btn:hover {
+	background: rgb(12, 147, 180);
+    color: white;
+}
+</style>
+
+<br><br><br><br><br>
+
 
       <style>
           .p-4{
@@ -685,6 +680,16 @@ line-height: 1.2;
               font-size: 14px;
           }
       </style>
+
+<br><br><br><br>
+<div class="text-center">
+    {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <li><a href="{%url 'index'%}"><button class="btn btn-success" style="font-size: 14px; cursor: pointer; min-width: 140px;">Make Announcement</button></a> </li>
+                    {% endif %}
+    {% endif %}
+
+</div>
 
 <section id="faq" class="faq section-bg">
     <div class="container aos-init aos-animate" data-aos="fade-up">

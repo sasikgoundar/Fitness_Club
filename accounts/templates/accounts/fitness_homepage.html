@@ -372,7 +372,7 @@ margin-top: 40px;
       <div class="text-center">
         <h3><i class="fa fa-star"></i>     Free Trial     <i class="fa fa-star"></i></h3>
         <p> Experience the world-class fitness regime for a day absolutely free. We are sure you would love it.</p>
-        <a class="cta-btn" href="#">Book A Free Trial</a>
+        <a class="cta-btn" href="{% url 'Trial' %}">Book A Free Trial</a>
       </div>
     </div>
   </section>
@@ -699,24 +699,151 @@ margin-top: 40px;
 }
 </style>
 
-    <!-- just to make scrolling effect possible -->
-    <!---
-        <h2 class="myH2">What is this ?</h2>
-        <p class="myP">This is a responsive fixed navbar animated on scroll</p>
-        <p class="myP">I took inspiration from  ABDO STEIF (<a href="https://codepen.io/abdosteif/pen/bRoyMb?editors=1100">https://codepen.io/abdosteif/pen/bRoyMb?editors=1100</a>)
-        and Dicson <a href="https://codepen.io/dicson/pen/waKPgQ">(https://codepen.io/dicson/pen/waKPgQ)</a></p>
-        <p class="myP">I HOPE YOU FIND THIS USEFULL</p>
-        <p class="myP">Albi</p>
-            <p class="myP">
-            
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-        </p>
+<br><br><br><br><br>
+<section>
+  <div class="section-title">
+    <h3>Our <span style="color: #0d58ba;">Location</span> </h3>
+  </div><br>
+  <div style="text-align: center;">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.0760826298!2d72.89740662300756!3d19.07354530406199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c627a20bcaa9%3A0xb2fd3bcfeac0052a!2sK.%20J.%20Somaiya%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1616743407406!5m2!1sen!2sin"
+  width="500" height="350" style="border:0;" frameborder="0" allowfullscreen loading="lazy" style="border: 0;">
+</iframe>
 </div>
--->
+</section>
+
+<style>
+  .section-title {
+    text-align: center;
+    padding-bottom: 30px;
+          }
+.section-title h3{
+            margin: 0 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+          }
+          </style>
+
+
+<br><br><br><br>
+<section>
+  <div class="section-title">
+    <h3>Contact <span style="color: #0d58ba;">Us</span> </h3>
+  </div><br>
+  <div class="mt-4" style="text-align: center; margin: 0 auto;">
+     <div class="col-lg-8">
+      <form role="form" action="" method="POST" class="message-form" style="text-align: center; margin-left: 25%;">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6 form-group">
+            {{form.name}}
+          </div>
+          <div class="col-md-6 form-group mt-3 mt-md-0">
+            {{form.email_id}}
+          </div>
+        </div>
+          <div class="form-group mt-3">
+            {{form.message}}
+          </div>
+          <div class="mt-4 text-center">
+            <button type="submit" btn>Send Message</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-title {
+    text-align: center;
+    padding-bottom: 30px;
+          }
+.section-title h3{
+            margin: 0 0 0 0;
+    font-size: 32px;
+    font-weight: 700;
+          }
+.justify-content-center{
+  justify-content: center !important;
+}
+@media (min-width: 992px){
+.col-lg-10 {
+    flex: 0 0 auto;
+    width: 83.3333333333%;
+}}
+@media (min-width: 768px){
+.col-md-6 {
+    flex: 0 0 auto;
+    width: 50%;
+}}
+.message-form {
+  text-align: center;
+    width: 100%;
+    padding: 30px;
+    background: #fff;
+    border-radius: 4px;
+    margin: 0 auto;
+}
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x)/ -2);
+    margin-left: calc(var(--bs-gutter-x)/ -2);
+}
+.message-form .form-group {
+    padding-bottom: 8px;
+}
+.message-form input {
+    height: 44px;
+}
+.message-form input, .message-form textarea {
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+}
+textarea.form-control {
+    min-height: calc(1.5em + .75rem + 2px);
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #b2b3b4;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.message-form textarea {
+    padding: 11px 12px;
+}
+.text-center{
+  text-align: center !important;
+}
+.message-form button[type="submit"]{
+  background: #3498db;
+    border: 0;
+    padding: 10px 24px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+button:hover{
+  background-color: #0d58ba;
+}
+</style>
 
 <!-- Jquery needed -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -769,7 +896,7 @@ body {
 
 .nav div.logo a {
     text-decoration: none;
-    color: rgb(69, 160, 190);
+    color: rgb(111, 203, 240);
     font-size: 2.5rem;
 }
 
@@ -800,7 +927,7 @@ body {
 
 .nav div.main_list ul li a {
     text-decoration: none;
-    color: rgb(69, 160, 190);
+    color: rgb(111, 203, 240);
     line-height: 65px;
     font-size: 2.4rem;
 }
@@ -1107,31 +1234,6 @@ $('.navTrigger').click(function () {
 });
 </script>
 
-<br><br><br><br><br>
-<section>
-  <div class="section-title">
-    <h3>Our <span style="color: #0d58ba;">Location</span> </h3>
-  </div><br>
-  <div style="text-align: center;">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.0760826298!2d72.89740662300756!3d19.07354530406199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c627a20bcaa9%3A0xb2fd3bcfeac0052a!2sK.%20J.%20Somaiya%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1616743407406!5m2!1sen!2sin"
-  width="500" height="350" style="border:0;" frameborder="0" allowfullscreen loading="lazy" style="border: 0;">
-</iframe>
-</div>
-</section>
-
-<style>
-  .section-title {
-    text-align: center;
-    padding-bottom: 30px;
-          }
-.section-title h3{
-            margin: 0 0 0 0;
-    font-size: 32px;
-    font-weight: 700;
-          }
-          </style>
-
-
 <section>
         <footer class="footer-distributed">
             <div class="footer-left">
@@ -1383,4 +1485,19 @@ $('.navTrigger').click(function () {
       $('.customer-service').show();
     }
   </script>
+
+  <script>
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Name..';
+		form_fields[2].placeholder='EmailId..';
+		form_fields[3].placeholder='Message..';
+
+
+		for (var field in form_fields){
+			form_fields[field].className += ' form-control'
+		}
+	</script>
+</body>
+</html>
+
 

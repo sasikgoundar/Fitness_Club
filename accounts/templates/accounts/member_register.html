@@ -16,11 +16,11 @@
 
 
 	<nav class="nav">
-    <div class="container">
-        <div class="logo">
-            <a href="{% url 'Afterlogin' %}">Logo</a>
-        </div>
-        <div id="mainListDiv" class="main_list">
+		<div class="container">
+			<div class="logo">
+				<a href="{% url 'Afterlogin' %}">Logo</a>
+			</div>
+			<div id="mainListDiv" class="main_list">
             <ul class="navlinks ml-auto">
                 {% if not user.is_authenticated %}
                 <li><a href="{% url 'register' %}">Register</a></li>
@@ -32,23 +32,19 @@
                 <li><a href="{% url 'Aboutus' %}">About</a></li>
 
                 {% if user.is_authenticated %}
-                    {% if user.is_staff %}
-                        <li><a href="{%url 'index'%}">Announcement</a> </li>
-                    {% endif %}
-                <li><a href="{% url 'Plan' %}">Diet Plan</a> </li>
                 <li><a href="{% url 'MyProfile' %}">My Settings</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
               <li><a href="#">Hello, {{request.user}}</a></li>
                 {% endif %}
             </ul>
         </div>
-        <span class="navTrigger">
-            <i></i>
-            <i></i>
-            <i></i>
-        </span>
-    </div>
-</nav>
+			<span class="navTrigger">
+				<i></i>
+				<i></i>
+				<i></i>
+			</span>
+		</div>
+	</nav>
 	<script>
 		$(window).scroll(function() {
 			if ($(document).scrollTop() > 50) {
@@ -65,7 +61,7 @@
 		console.log("Clicked menu");
 		$("#mainListDiv").toggleClass("show_list");
 		$("#mainListDiv").fadeIn();
-	
+
 	});
 	</script>
 
@@ -82,7 +78,7 @@
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<span class="input-group-text">
-						<i class="fa fa-home"></i>
+						<i class="fa fa-user"></i>
 					</span>
 				</div>
 				{{form.first_name}}
@@ -93,7 +89,7 @@
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<span class="input-group-text">
-						<i class="fa fa-home"></i>
+						<i class="fa fa-user"></i>
 					</span>
 				</div>
 				{{form.last_name}}
@@ -104,7 +100,7 @@
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<span class="input-group-text">
-						<i class="fa fa-home"></i>
+						<i class="fa fa-paper-plane"></i>
 					</span>
 				</div>
 				{{form.email_id}}
@@ -117,7 +113,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">
 						<span class="fa fa-user"></span>
-					</span>                    
+					</span>
 				</div>
 
 				{{form.dob}}
@@ -160,13 +156,14 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">
                       <span class="fa fa-phone"></span>
-                    </span>                    
+                    </span>
                   </div>
                   <input type="text" class="form-control" name="contact no." placeholder="Alternate Contact No." required="required">
                 </div>
         </div>-->
 
 		<div class="form-group">
+			<div class="input-group">
         <!-- <select id="select" class="form-control" aria-placeholder="Choose Category" required title="Gender", name="gender">
             <option disabled selected>Gender</option>
             <option>Male</option>
@@ -181,7 +178,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">
 						<i class="fa fa-home"></i>
-					</span>                    
+					</span>
 				</div>
 
 				{{form.address}}
@@ -198,8 +195,12 @@
 				<span>{{form.fitness}}<span>
 			</div>
         </div>-->
+		<div class="form-group">
+			<div class="input-group">
 		Fitness:
 		<span>{{form.fitness}}</span>
+		</div>
+		</div>
 
 		<!--<div class="form-group">
           <select id="checkbox" class="form-control" aria-placeholder="Choose Category" required title="1st preference" name="fitness">
@@ -212,7 +213,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">
 
-						<i class="fa fa-home"></i>
+						<i class="fa fa-user"></i>
 					</span>
 				</div>
 				{{form.plan}}
@@ -224,7 +225,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">
 
-						<i class="fa fa-home"></i>
+						<i class="fa fa-user"></i>
 					</span>
 				</div>Trainer:
 				{{form.trainer}}
@@ -275,14 +276,12 @@
 
 <style>
 body {
-	color: red;
 	background: #19aa8d;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Montserrat', sans-serif;
   background-attachment: fixed;
-  height: 500px;
-  background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(https://images.unsplash.com/photo-1591940765155-0604537032a5?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTEyfHx1bmlzZXglMjBmaXRuZXNzJTIwZ3ltbWluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
+  background-image: url(https://images.unsplash.com/photo-1590239926044-4131f5d0654d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fGd5bSUyMGVxdWlwbWVudHxlbnwwfDB8MHxibGFjaw%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
+  background-position: center;
 }
 .form-control {
 	font-size: 15px;
@@ -291,13 +290,13 @@ body {
 .form-control, .form-control:focus, .input-group-text {
 	border-color: #e1e1e1;
 }
-.form-control, .btn {        
+.form-control, .btn {
 	border-radius: 3px;
 }
 .signup-form {
 	width: 550px;
 	margin: 0 auto;
-	padding: 30px 0;		
+	padding: 30px 0;
 }
 .signup-form form {
 	color: white;
@@ -333,12 +332,12 @@ body {
 .signup-form .form-control {
 	min-height: 38px;
 	box-shadow: none !important;
-}	
+}
 .signup-form .input-group-addon {
 	max-width: 42px;
 	text-align: center;
-}	
-.signup-form .btn, .signup-form .btn:active {        
+}
+.signup-form .btn, .signup-form .btn:active {
 	font-size: 20px;
 	font-weight: bold;
 	background:  rgb(226, 52, 52) !important;
@@ -357,7 +356,7 @@ body {
 	background: rgb(224, 14, 14) !important;
 }
 .signup-form a {
-	color: #fff;	
+	color: #fff;
 	text-decoration: underline;
 }
 .signup-form a:hover {
@@ -366,7 +365,7 @@ body {
 .signup-form form a {
 	color: rgb(241, 238, 55);
 	text-decoration: none;
-}	
+}
 .signup-form form a:hover {
 	text-decoration: underline;
 }
@@ -387,12 +386,12 @@ body {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-	
+
 	/*-- Inspiration taken from abdo steif -->
 	/* --> https://codepen.io/abdosteif/pen/bRoyMb?editors=1100*/
-	
+
 	/* Navbar section */
-	
+
 	.nav {
 		width: 100%;
 		height: 65px;
@@ -401,29 +400,29 @@ body {
 		text-align: center;
 		z-index: 10;
 	}
-	
+
 	.nav div.logo {
 		float: left;
 		width: auto;
 		height: auto;
 		padding-left: 3rem;
 	}
-	
+
 	.nav div.logo a {
 		text-decoration: none;
-		color: #fff;
+		color: rgb(111, 203, 240);
 		font-size: 1.6rem;
 	}
-	
+
 	.nav div.logo a:hover {
-		color: #14c4ca;
+		color:#19c8ce;
 	}
-	
+
 	.nav div.main_list {
 		height: 65px;
 		float: right;
 	}
-	
+
 	.nav div.main_list ul {
 		width: 100%;
 		height: 65px;
@@ -432,35 +431,25 @@ body {
 		margin: 0;
 		padding: 0;
 	}
-	
+
 	.nav div.main_list ul li {
 		width: auto;
 		height: 65px;
 		padding: 0;
 		padding-right: 3rem;
 	}
-	
+
 	.nav div.main_list ul li a {
 		text-decoration: none;
-		color: #fff;
+		color:rgb(111, 203, 240);
 		line-height: 65px;
 		font-size: 1.6rem;
 	}
-	
+
 	.nav div.main_list ul li a:hover {
-		color: #14c4ca;
+		color: #19c8ce;
 	}
-	
-	
-	/* Home section */
-	
-	body {
-		width: 100%;
-		height: 130vh;
-		background-image: url(https://images.unsplash.com/photo-1598575435251-574ba3ba7ad3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTA2fHx1bmlzZXglMjBmaXRuZXNzJTIwZ3ltbWluZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60) center fixed;
-		background-position: center top;
-		background-size:cover;
-	}
+
 	
 	.navTrigger {
 		display: none;

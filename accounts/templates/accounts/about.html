@@ -17,7 +17,7 @@
 <nav class="nav">
     <div class="container">
         <div class="logo">
-            <a href="{% url 'Afterlogin' %}">Logo</a>
+            <a href="{% url 'Homepage' %}">Logo</a>
         </div>
         <div id="mainListDiv" class="main_list">
             <ul class="navlinks ml-auto">
@@ -28,12 +28,9 @@
                 <li><a href="{% url 'login' %}">Sign In</a></li>
                 {% endif %}
 
-                <li><a href="{% url 'Aboutus' %}">About</a></li>
+                <li><a href="{% url 'Aboutus' %}"> AboutUs</a></li>
 
                 {% if user.is_authenticated %}
-                    {% if user.is_staff %}
-                        <li><a href="{%url 'index'%}">Announcement</a> </li>
-                    {% endif %}
                 <li><a href="{% url 'Plan' %}">Diet Plan</a> </li>
                 <li><a href="{% url 'MyProfile' %}">My Settings</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -445,13 +442,13 @@ $('.navTrigger').click(function () {
     <div class="section-title">
       <h3>Our <span style="color: #0d58ba;">Team</span></h3>
     </div>
-      
+
         <div class="row">
           <div class="col-md-3 col-sm-6 item">
             <div class="card item-card card-block">
-          <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?ixid=MXwxMjA3fDF8MHxzZWFyY2h8Mjh8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title mt-3 mb-3">John Development • Owner</h5>
-              <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
+          <img src="https://images.unsplash.com/photo-1601342549300-f9f0da233f22?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTR8fHNpdHRpbmclMjBwZXJzb258ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
+              <h5 class="item-card-title mt-3 mb-3">John Doe • Owner</h5>
+              <p class="card-text">Has 9+ years of experience in the fitness industry.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
@@ -459,8 +456,8 @@ $('.navTrigger').click(function () {
           <div class="col-md-3 col-sm-6 item">
             <div class="card item-card card-block">
           <img src="https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzV8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Manager</h5>
-              <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
+              <h5 class="item-card-title  mt-3 mb-3">Britt Metz • Manager</h5>
+              <p class="card-text">Worked in 3 gymnasiums, has 7+ years of experience.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
@@ -468,8 +465,8 @@ $('.navTrigger').click(function () {
           <div class="col-md-3 col-sm-6 item">
             <div class="card item-card card-block">
           <img src="https://images.unsplash.com/photo-1541600383005-565c949cf777?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTA4fHxneW18ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Instructor</h5>
-              <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
+              <h5 class="item-card-title  mt-3 mb-3">John Doe • Instructor</h5>
+              <p class="card-text">Certified Instructor, 3+ years of experience.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
@@ -477,20 +474,20 @@ $('.navTrigger').click(function () {
           <div class="col-md-3 col-sm-6 item">
             <div class="card item-card card-block">
           <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Nzh8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Personal Trainer</h5>
-              <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
+              <h5 class="item-card-title  mt-3 mb-3">Britt Metz • Personal Trainer</h5>
+              <p class="card-text">Certified Instructor, 3+ years of experience.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
-          </div>    
+          </div>
         </div>
         <br>
         <div class="row">
           <div class="col-md-3 col-sm-6 item">
             <div class="card item-card card-block">
           <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Nzh8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title mt-3 mb-3">John Development • Trainer</h5>
-              <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
+              <h5 class="item-card-title mt-3 mb-3">John Doe • Personal Trainer</h5>
+              <p class="card-text">Certified Instructor, 3+ years of experience.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
@@ -498,8 +495,8 @@ $('.navTrigger').click(function () {
           <div class="col-md-3 col-sm-6 item">
             <div class="card item-card card-block">
           <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?ixid=MXwxMjA3fDF8MHxzZWFyY2h8Mjh8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Personal Trainer</h5>
-              <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
+              <h5 class="item-card-title  mt-3 mb-3">Britt Metz • Personal Trainer</h5>
+              <p class="card-text">Certified Instructor, 3+ years of experience.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
@@ -507,8 +504,8 @@ $('.navTrigger').click(function () {
           <div class="col-md-3 col-sm-6 item">
             <div class="card item-card card-block">
           <img src="https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzV8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Personal Trainer</h5>
-              <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
+              <h5 class="item-card-title  mt-3 mb-3">John Doe • Personal Trainer</h5>
+              <p class="card-text">Certified Instructor, 3+ years of experience.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
@@ -516,17 +513,17 @@ $('.navTrigger').click(function () {
           <div class="col-md-3 col-sm-6 item">
             <div class="card item-card card-block">
           <img src="https://images.unsplash.com/photo-1541600383005-565c949cf777?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTA4fHxneW18ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Trainer</h5>
-              <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions. This is a company that builds websites, web apps and e-commerce solutions.</p> 
+              <h5 class="item-card-title  mt-3 mb-3">Britt Metz • Personal Trainer</h5>
+              <p class="card-text">Certified Instructor, 3+ years of experience.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
-          </div>    
+          </div>
           <div class="col-md-3 col-sm-6 item"><br>
             <div class="card item-card card-block">
           <img src="https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzV8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Fitness consultant</h5>
-              <p class="card-text">Certified Instructor, 3+ years of experience.</p> 
+              <h5 class="item-card-title  mt-3 mb-3">John Doe • Fitness consultant</h5>
+              <p class="card-text">Certified Instructor, 3+ years of experience.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
@@ -534,8 +531,8 @@ $('.navTrigger').click(function () {
           <div class="col-md-3 col-sm-6 item"><br>
             <div class="card item-card card-block">
           <img src="https://images.unsplash.com/photo-1541600383005-565c949cf777?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTA4fHxneW18ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Fitness consultant</h5>
-              <p class="card-text">Certified Instructor, 3+ years of experience.</p> 
+              <h5 class="item-card-title  mt-3 mb-3">Britt Metz • Fitness consultant</h5>
+              <p class="card-text">Certified Instructor, 3+ years of experience.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
@@ -543,8 +540,8 @@ $('.navTrigger').click(function () {
           <div class="col-md-3 col-sm-6 item"><br>
             <div class="card item-card card-block">
           <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Nzh8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Nutritionist</h5>
-              <p class="card-text">Certified Instructor, 3+ years of experience.</p> 
+              <h5 class="item-card-title  mt-3 mb-3">John Doe • Nutritionist</h5>
+              <p class="card-text">Certified Instructor, 3+ years of experience.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
@@ -552,16 +549,16 @@ $('.navTrigger').click(function () {
           <div class="col-md-3 col-sm-6 item"><br>
             <div class="card item-card card-block">
           <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?ixid=MXwxMjA3fDF8MHxzZWFyY2h8Mjh8fGd5bXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Photo of sunset">
-              <h5 class="item-card-title  mt-3 mb-3">ProVyuh • Nutritionist</h5>
-              <p class="card-text">Certified Instructor, 3+ years of experience.</p> 
+              <h5 class="item-card-title  mt-3 mb-3">Britt Metz • Nutritionist</h5>
+              <p class="card-text">Certified Instructor, 3+ years of experience.</p>
               <br>
               <i class="fa fa-phone ml-2" style="font-size: 12px;"> +91-1234567896</i>
         </div>
-          </div> 
+          </div>
         </div>
-        
+
       </div>
-  
+
       <style>
         .section-title {
          text-align: center;
@@ -576,7 +573,7 @@ $('.navTrigger').click(function () {
         height:150px;
         width:100%;
       }
-      
+
       .item{
         padding-left:16px;
         padding-right:16px;
@@ -586,7 +583,7 @@ $('.navTrigger').click(function () {
         cursor:pointer;
         border: 1px solid rgb(69, 69, 226);
       }
-      .item-card-title{  
+      .item-card-title{
         font-size:15px;
         transition:1s;
         cursor:pointer;
@@ -596,7 +593,7 @@ $('.navTrigger').click(function () {
         box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
       }
       .card-text{
-        height:100px;  
+        height:60px;
         font-size: 12px;
       }
       .card::before, .card::after {
@@ -617,7 +614,7 @@ $('.navTrigger').click(function () {
       .card::after {
         transform-origin: right bottom;
       }
-      
+
       </style>
 </section>
 
@@ -797,9 +794,9 @@ See for yourself and take advantage of our no obligation call!
 <ul class="faq-list">
 
   <li>
-    <div class="faq1" class="collapse show" data-bs-parent=".faq-list"><br>
+    <div id="faq1" class="collapse show" data-bs-parent=".faq-list"><br>
       <p>
-        We’re looking for candidates who are full of energy, enthusiasm and have a undeniably tough work ethic. We also pride ourselves in hiring talented individuals from all walks of life. 
+        We’re looking for candidates who are full of energy, enthusiasm and have a undeniably tough work ethic. We also pride ourselves in hiring talented individuals from all walks of life.
         We have positions open for personal trainer, sales consultant, fitness consultant, senior fitness consultant, nutritionists, health coach and receptionist. To know more about open positions or apply for a position, call  1555123456 or email to <a href="/cdn-cgi/l/email-protection#ff8c8a8f8f908d8bbf9c90928f9e9186d19c9092"><span class="__cf_email__" data-cfemail="ea999f9a9a85989eaa8985879a8b8493c4898587">thebodyworkks@gmail.com</span></a>
       </p><br>
     </div>
@@ -896,8 +893,7 @@ ul{
 
 				<p class="footer-company-name">The BodyWorks &copy; 2021</p>
                 <p class="footer-company-name">All rights reserved</p><br>
-                <a href="{% url 'Terms' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none;">Terms of Services</a>&nbsp;
-                <a href="{% url 'PrivacyPolicy' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none">Privacy Policy</a>
+                <a href="{% url 'Terms' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none;">Terms of Services</a>&nbsp; &nbsp;<a href="{% url 'PrivacyPolicy' %}" style="font-family: 'Montserrat','sans-serif';color: white;text-decoration: none">Privacy Policy</a>
 			</div>
 
 			<div class="footer-center">
