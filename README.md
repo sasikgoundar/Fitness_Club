@@ -39,4 +39,4 @@ for linux/mac - <br/>
 <pre>
 $ py manage.py runserver
 </pre> <br/><br/>
-Made with ❤️ by [Swapnil Jha](https://github.com/Swapnil0506), [Sasikumar Goundar](https://github.com/sasikgoundar), [Kapil Wagh](https://github.com/kapilwag
+Made with ❤️ by [Swapnil Jha](https://github.com/Swapnil0506), [Sasikumar Goundar](https://github.com/sasikgoundar), [Kapil Wagh](https://github.com/kapilwagh)
