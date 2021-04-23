@@ -20,11 +20,11 @@ To run this project :
 
 Clone the project -<br/>
 <pre>
-$ git clone https://github.com/Swapnil0506/Heart_Disease_Prediction.git
+$ git clone https://github.com/sasikgoundar/Fitness_Club.git
 </pre>
 Go to the Project(master branch)-<br/>
 <pre>
-$ cd Heart_Disease_Prediction
+$ cd Fitness_club
 </pre>
 Install all the requirements -<br/>
 <pre>
