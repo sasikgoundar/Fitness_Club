@@ -246,6 +246,21 @@ def accountsettings(request):
     context = {'form': form}
     return render(request, 'accounts/my profile_update.html', context)
 
+@login_required(login_url='login')
+def renewal(request):
+    member = request.user.member
+    form = MyProfileForm(instance=member)
+
+    if request.method == 'POST':
+        form = MyProfileForm(request.POST, request.FILES, instance=member)
+        if form.is_valid():
+            form.save()
+            return redirect('Landing')
+
+    context = {'form': form}
+    return render(request, 'accounts/renewal.html', context)
+
+
 
 from django.conf import settings  # new
 from django.http.response import JsonResponse  # new
