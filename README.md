@@ -24,7 +24,7 @@ $ git clone https://github.com/sasikgoundar/Fitness_Club.git
 </pre>
 Go to the Project(master branch)-<br/>
 <pre>
-$ cd Fitness_club
+$ cd Fitness_Club
 </pre>
 Install all the requirements -<br/>
 <pre>
